@@ -26,6 +26,7 @@
 
 <script>
  
+
 // import Vistaf1 from './components/Usuario_vistaform1.vue'
 
 export default {
@@ -34,7 +35,7 @@ export default {
         titulo:'Quejas Anonimas',
         autor:'Adam Giovannny Lutin Lutin.'
    }
- },
+ }
 
 }
 </script>

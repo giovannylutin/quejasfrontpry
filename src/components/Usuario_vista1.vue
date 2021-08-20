@@ -19,10 +19,12 @@
 <script>
 
 export default {
+    
  data(){
    return{
         tituloalerta:'Importante!!!!',
-        alertacontenido:"Si tu consulta es anonima favor de seleccionar la Opcion SI,en caso contrario pulsa el boton siguiente para continuar con tu denucia anonima."
+        alertacontenido:"Si tu consulta es anonima favor de seleccionar la Opcion SI,en caso contrario pulsa el boton siguiente para continuar con tu denucia anonima.",
+        eliggio: 1
    }
  },
   methods: {
@@ -36,6 +38,9 @@ export default {
             document.getElementById("customSwitch1").value = "NO"; 
         
     }
+  },
+  props: {
+    tipo: Number
   }
 }
 </script>

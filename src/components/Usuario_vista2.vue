@@ -1,11 +1,16 @@
 <template>
     <div class="datospersonales">
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="customSwitch1" value="NO" v-on:change="cambio" >
+            <label class="custom-control-label" for="customSwitch1"><span id="TEXTO">NO</span></label>
+        </div>
         <form>
-        <div class="Titulo">
+         <div v-show="vista===1">
+            <div class="Titulo">
             <h4><span class="indicador">1</span> Datos Personales</h4>
         </div>
 
-        <div class="formulario1">
+        <div class="formulario1" >
              
                 <div class="form-row">
                     <div class="col">
@@ -14,97 +19,105 @@
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">No. CUI</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="CUI" required>
+                        <input type="text" class="form-control" id="cui" placeholder="CUI" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Telefono</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Telefono">
+                        <input type="text" class="form-control" id="telefono" placeholder="Telefono">
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Celular</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Celular" required>
+                        <input type="text" class="form-control" id="celular" placeholder="Celular" required>
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Correo</label>
-                        <input type="email" class="form-control" id="nombre" placeholder="Correo">
+                        <input type="email" class="form-control" id="correo" placeholder="Correo">
                     </div>
                 </div>
          
         </div>
+        
+        </div>   
+
+        
         <br>
 
         <div class="Titulo">
-            <h4><span class="indicador">2</span> Datos Proveedor</h4>
+            <h4><span class="indicador" v-if="vista===1">2</span>
+            <span class="indicador" v-else>1</span>
+             Datos Proveedor</h4>
         </div>
         <div class="formulario1">
              <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Empresa</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombre de la empresa" >
+                        <input type="text" class="form-control" id="empresa" placeholder="Nombre de la empresa" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Razon Social</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Razon Social Empresa" >
+                        <input type="text" class="form-control" id="razon" placeholder="Razon Social Empresa" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Nit</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Nit de la Empresa" >
+                        <input type="text" class="form-control" id="nit" placeholder="Nit de la Empresa" >
                     </div>
              </div>
 
               <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Direccion</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Direccion de la empresa" >
+                        <input type="text" class="form-control" id="direccion" placeholder="Direccion de la empresa" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Zona</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Zona Social Empresa" >
+                        <input type="text" class="form-control" id="zona" placeholder="Zona Social Empresa" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Telefono</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Telefono de la Empresa" >
+                        <input type="text" class="form-control" id="telefonoe" placeholder="Telefono de la Empresa" >
                     </div>
              </div>
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Departamento</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Departamento de la empresa" >
+                        <input type="text" class="form-control" id="departamento" placeholder="Departamento de la empresa" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Municipio</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Municipio Social Empresa" >
+                        <input type="text" class="form-control" id="municipio" placeholder="Municipio Social Empresa" >
                     </div>
              </div>
         </div>
         <br>
 
          <div class="Titulo">
-            <h4><span class="indicador">3</span> Detalle Queja</h4>
+            <h4><span class="indicador" v-if="vista===1">3</span>
+            <span class="indicador" v-else>2</span>
+             Detalle Queja</h4>
         </div>
          <div class="formulario1">
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">No. Factura</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="No. Factura" >
+                        <input type="text" class="form-control" id="factura" placeholder="No. Factura" >
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Fecha Emision</label>
-                        <input type="date" class="form-control" id="nombre" placeholder="Fecha Emision" >
+                        <input type="date" class="form-control" id="fecha" placeholder="Fecha Emision" >
                     </div>
 
                 </div>
                   <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Detalle de lo sucedido</label>
-                        <textarea type="text" class="form-control" id="nombre" placeholder="" ></textarea>
+                        <textarea type="text" class="form-control" id="detalle1" placeholder="" ></textarea>
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">Que solicita </label>
-                        <textarea type="" class="form-control" id="nombre" placeholder="" ></textarea>
+                        <textarea type="" class="form-control" id="detalle2" placeholder="" ></textarea>
                     </div>
 
                 </div>
@@ -121,6 +134,44 @@
             </form>
     </div>
 </template>
+<script>
+import axios from "axios";
+export default {
+  created() {
+    axios.get("https://jsonplaceholder.typicode.com/todos/1").then((result) => {
+      console.log(result.data);
+    })
+  },
+  data(){
+      return{
+          vista:1
+      }
+  }
+  ,
+  methods: {
+    cambio2(){
+        var valor= this.vista
+        console.log(valor);
+    },
+    cambio() {
+
+        var doc=document.getElementById('customSwitch1').value;
+        var valorone= this.vista
+        if(doc==="NO")
+        console.log(valorone),
+        this.vista=2,
+            document.getElementById('TEXTO').innerHTML="SI",
+            document.getElementById("customSwitch1").value = "SI";
+            
+        else
+         this.vista=1,
+            document.getElementById('TEXTO').innerHTML="NO",
+            document.getElementById("customSwitch1").value = "NO"; 
+        
+    }
+  }
+};
+</script>
 
 <style scoped>
 .Titulo{
