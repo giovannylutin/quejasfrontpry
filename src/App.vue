@@ -10,8 +10,8 @@
       <div class="panel_vistas">
         <div class="panel_vistas-cabecera"></div>
         <div class="panel_vistas-informacion">
-              <router-view>
-    </router-view>
+              <router-view />
+             <!-- </router-view> -->
           <!-- <vista/> -->
         </div>
       </div>
