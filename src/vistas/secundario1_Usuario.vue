@@ -1,12 +1,10 @@
 <template>
     <div class="datospersonales">
-
         <form>
          <div v-show="vista==='noanonimo'">
             <div class="Titulo">
             <h4><span class="indicador">1</span> Datos Personales</h4>
         </div>
-
         <div class="formulario1" >
              
                 <div class="form-row">
@@ -36,10 +34,7 @@
                 </div>
          
         </div>
-        
         </div>   
-
-        
         <br>
 
         <div class="Titulo">

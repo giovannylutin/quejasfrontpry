@@ -2,11 +2,12 @@
 <div class="texto">
   <div v-if="vistaopcion===2">
     <vistaprincipal v-bind:titulo="opcion" @tipo_queja="cambio" @tipo_navegar="iraform"/>
+    <br>
     <div v-if="opcion===1">
-      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/noanonimo'">Siguiente</button>
+      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/noanonimo'">{{botonmsg}}</button>
     </div>
     <div v-else-if="opcion===0">
-      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/anonimo'">Siguiente</button>
+      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/anonimo'">{{botonmsg}}</button>
     </div>
     
   </div>
@@ -26,6 +27,7 @@ components:{
  data(){
    return{
         opcion:1,
+        botonmsg: 'Continuar',
         vistaopcion:2,
         tituloalerta:'Importante!!!!',
         alertacontenido:"Si tu consulta es anonima favor de seleccionar la Opcion SI,en caso contrario pulsa el boton siguiente para continuar con tu denucia anonima.",
@@ -38,10 +40,12 @@ components:{
           if (valorone == 0){
             console.log(valorone)
              this.opcion=1
+             document.getElementById('TEXTO').innerHTML="NO"
           }
           else{
             console.log(valorone)
             this.opcion=0
+            document.getElementById('TEXTO').innerHTML="SI"
           }
         // var doc=document.getElementById('customSwitch1').value;
         // var valorone= this.opcion
