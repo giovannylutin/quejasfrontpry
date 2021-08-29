@@ -38,12 +38,12 @@ components:{
         cambio() {
           var valorone= this.opcion
           if (valorone == 0){
-            console.log(valorone)
+            // console.log(valorone)
              this.opcion=1
              document.getElementById('TEXTO').innerHTML="NO"
           }
           else{
-            console.log(valorone)
+            // console.log(valorone)
             this.opcion=0
             document.getElementById('TEXTO').innerHTML="SI"
           }

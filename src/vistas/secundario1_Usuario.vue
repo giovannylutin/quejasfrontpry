@@ -1,7 +1,6 @@
 <template>
 <div class="datospersonales">
-    <form>
-        <input id="prodId" name="prodId" type="text" style="" v-model="form.opcion2" value="1">
+        <form>
         <div v-show="vista==='noanonimo'">
                 <div class="Titulo">
                 <h4><span class="indicador">1</span> Datos Personales</h4>
@@ -74,8 +73,11 @@
             </div>
             <div class="form-row">
                 <div class="col">
-                    <label for="exampleInputEmail1">Departamento</label>
-                    <input type="text" v-model="form.departamento" class="form-control" id="departamento" placeholder="Departamento de la empresa" >
+                    <label for="selectexample">Departamento</label>
+                    <select v-model="form.departamento" class="form-control" aria-label="selectexample">
+                        <option v-for="(depa) in departamento" v-bind:key ="depa.ID_DEP" :value="depa.ID_DEP">{{depa.DEPARTAMENTO}}</option>
+                    </select>
+                    <!-- <input type="text" v-model="form.departamento" class="form-control" id="departamento" placeholder="Departamento de la empresa" > -->
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Municipio</label>
@@ -124,26 +126,38 @@
             <br>
             
             <button type="button"  class="btn btn-secondary" v-on:click="alta_queja">Submit</button>        
-    </form>
-    
-         {{vista}}    
-    </div>
+    </form> 
+</div>
 </template>
 <script>
-import axios from "axios";
+ import axios from "axios";
+
 export default {
 //   created() {
 //     axios.get("http://localhost/Quejas_api/cliente.php?id=42").then((result) => {
 //       console.log(result.data);
 //     })
 //   },
-  
-  data:function(){
+
+  data(){
       return{
          opcionseleccionada:2,
-         form:{
-             "opcion2": "",
-             "departamento":"",
+         departamento:[],
+         form:{},        
+         vista:'noanonimo'
+      }
+  },
+  mounted(){
+       this.opcionver(),
+       this.llenarform(),
+       this.llenarmunicipio()
+       
+        
+  },
+  
+  methods: {
+    llenarform() {
+        this.form = {opcion: this.opcionseleccionada,"departamento":"",
              "municipio":"",
              "estado":"recibido",
              "nombre":"",
@@ -157,34 +171,38 @@ export default {
              "direccionemp":"",
              "zona":"",
              "telefonoemp":"",
-             "correoemp":""
-         },
-         vista:'noanonimo'
-      }
-  },
-  mounted(){
-       this.opcionver()
-       
-  },
-  
-  methods: {
-      opcionver(){
-          var vistaver = this.$route.params.opcion;
+             "correoemp":""};
+    //  console.log(this.departamento);
+    },
+    opcionver(){
+       var vistaver = this.$route.params.opcion;
         //   console.log(vistaver)
           this.vista=vistaver;
           if(vistaver=='anonimo'){
                this.opcionseleccionada=1;
-                console.log(this.opcionseleccionada)
-                , console.log(this.form);
+                // console.log(this.opcionseleccionada),
+                 console.log(this.form);
           }
       },
       alta_queja(){
-          console.log(this.form);
-           axios.post("http://localhost/Quejas_api/cliente.php",this.form)
-           .then(data => {
-                 console.log(data);
+        //   console.log(this.form);
+        //    console.log(this.form);
+            axios.post("http://localhost/Quejas_api/cliente.php",this.form)
+            .then(data => {
+                  if(data.status==200){
+                      alert("se inserto correctamente"+data.statusText);
+                      console.log(data.request)
+                  }
            })
         
+      }
+      ,llenarmunicipio(){
+      
+     axios.get ("http://localhost/Quejas_api/elementos.php") .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+                 this.departamento = res.data; // Obtener datos
+            //    console.log('success');
+            //   console.log(this.departamento);
+      })
       }
     // cambio2(){
     //     var valor= this.vista
