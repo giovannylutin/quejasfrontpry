@@ -74,14 +74,17 @@
             <div class="form-row">
                 <div class="col">
                     <label for="selectexample">Departamento</label>
-                    <select v-model="form.departamento" class="form-control" aria-label="selectexample">
+                    <select v-model="form.departamento" class="form-control" aria-label="selectexample" v-on:change="cambiarmun">
                         <option v-for="(depa) in departamento" v-bind:key ="depa.ID_DEP" :value="depa.ID_DEP">{{depa.DEPARTAMENTO}}</option>
                     </select>
                     <!-- <input type="text" v-model="form.departamento" class="form-control" id="departamento" placeholder="Departamento de la empresa" > -->
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Municipio</label>
-                    <input type="text" v-model="form.municipio" class="form-control" id="municipio" placeholder="Municipio Social Empresa" >
+                    <select v-model="form.municipio" class="form-control" aria-label="selectexample">
+                        <option v-for="(muni) in municipio" v-bind:key ="muni.ID_MUN" :value="muni.ID_MUN">{{muni.MUNICIPIO}}</option>
+                    </select>
+                    <!-- <input type="text" v-model="form.municipio" class="form-control" id="municipio" placeholder="Municipio Social Empresa" > -->
                 </div>
             </div>
         </div>
@@ -143,6 +146,7 @@ export default {
       return{
          opcionseleccionada:2,
          departamento:[],
+         municipio:[],
          form:{},        
          vista:'noanonimo'
       }
@@ -195,7 +199,16 @@ export default {
                   }
            })
         
+      },
+      cambiarmun(){
+          this.form.departamento;
+           axios.get ("http://localhost/Quejas_api/elementos.php?id="+this.form.departamento) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+                 this.municipio = res.data; // Obtener datos
+                 console.log(this.municipio);
+           
+      })
       }
+
       ,llenarmunicipio(){
       
      axios.get ("http://localhost/Quejas_api/elementos.php") .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
@@ -204,26 +217,7 @@ export default {
             //   console.log(this.departamento);
       })
       }
-    // cambio2(){
-    //     var valor= this.vista
-    //     console.log(valor);
-    // },
-    // cambio() {
 
-    //     var doc=document.getElementById('customSwitch1').value;
-    //     var valorone= this.vista
-    //     if(doc==="NO")
-    //     console.log(valorone),
-    //     this.vista=2,
-    //         document.getElementById('TEXTO').innerHTML="SI",
-    //         document.getElementById("customSwitch1").value = "SI";
-            
-    //     else
-    //      this.vista=1,
-    //         document.getElementById('TEXTO').innerHTML="NO",
-    //         document.getElementById("customSwitch1").value = "NO"; 
-        
-    // }
   }
 };
 </script>
