@@ -194,8 +194,11 @@ export default {
             axios.post("http://localhost/Quejas_api/cliente.php",this.form)
             .then(data => {
                   if(data.status==200){
-                      alert("se inserto correctamente"+data.statusText);
-                      console.log(data.request)
+                      
+                      var valortk = data.statusText;
+                      alert("se inserto correctamente"+valortk);
+                    //   console.log(data.request)
+                      this.$router.push('/'+valortk +'/Consulta')
                   }
            })
         

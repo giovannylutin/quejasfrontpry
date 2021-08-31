@@ -52,17 +52,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100vh;
+   
+   
+  
   }
   .panel{
+   
     /* outline: 2px solid red; */
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 100%; */
     height: 80%;
 }
 .panel_vistas{
     /* outline: 2px solid  blue; */
-    width: 80%;
+    width: 85%;
+    max-width:1200px ;
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -78,7 +83,7 @@ export default {
     background-color: #343a40;
     box-shadow: 0px 5px 8px lightgray;
     width: 100%;
-    height: 10%;
+    height: 5%;
 }
 .panel_vistas-informacion{
     /* outline: 2px solid  blue; */
