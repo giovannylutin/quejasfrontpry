@@ -1,7 +1,11 @@
 <template>
 <div class="texto">
-  <div v-if="vistaopcion===2">
+  <vistados class="opciones"/>
+ 
+  <div v-if="vistaopcion===2" class="dat">
     <vistaprincipal v-bind:titulo="opcion" @tipo_queja="cambio" @tipo_navegar="iraform"/>
+    
+    
     <br>
     <div v-if="opcion===1">
       <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/noanonimo'">{{botonmsg}}</button>
@@ -11,6 +15,7 @@
     </div>
     
   </div>
+  
   <!-- <div v-else-if="vistaopcion===3">
      <vistaformulario v-bind:titulo="opcion" />
   </div>    -->
@@ -18,10 +23,11 @@
 </template>
 <script>
 import vistaprincipal from '@/vistas/principal1_Usuario.vue';
+import vistados from '@/vistas/principal2_Usuario.vue';
 // import vistaformulario from '@/vistas/secundario1_Usuario.vue';
 export default {
 components:{
-  vistaprincipal
+  vistaprincipal,vistados
   // vistaformulario
 },
  data(){
@@ -77,4 +83,12 @@ components:{
   }
 }
 </script>
+<style scoped>
+.opciones{
+  width: 80%;
+  height: 100%;
+  
+  outline:2px solid red;
+}
 
+</style>
