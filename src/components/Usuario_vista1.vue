@@ -33,7 +33,7 @@ components:{
  data(){
    return{
         opcion:1,
-        botonmsg: 'Continuar',
+        botonmsg: 'Ingresar Queja',
         vistaopcion:2,
         tituloalerta:'Importante!!!!',
         alertacontenido:"Si tu consulta es anonima favor de seleccionar la Opcion SI,en caso contrario pulsa el boton siguiente para continuar con tu denucia anonima.",
@@ -85,10 +85,11 @@ components:{
 </script>
 <style scoped>
 .opciones{
-  width: 80%;
+  width: 100%;
   height: 100%;
   
-  outline:2px solid red;
+  /* outline:2px solid red; */
 }
+
 
 </style>

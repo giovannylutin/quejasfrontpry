@@ -74,7 +74,8 @@
             <div class="form-row">
                 <div class="col">
                     <label for="selectexample">Departamento</label>
-                    <select v-model="form.departamento" class="form-control" aria-label="selectexample" v-on:change="cambiarmun">
+                    <select v-model="form.departamento" class="form-control"  v-on:change="cambiarmun">
+                         <option value="" disabled selected hidden>Seleccione Departamento</option>
                         <option v-for="(depa) in departamento" v-bind:key ="depa.ID_DEP" :value="depa.ID_DEP">{{depa.DEPARTAMENTO}}</option>
                     </select>
                     <!-- <input type="text" v-model="form.departamento" class="form-control" id="departamento" placeholder="Departamento de la empresa" > -->
@@ -82,6 +83,7 @@
                 <div class="col">
                     <label for="exampleInputEmail1">Municipio</label>
                     <select v-model="form.municipio" class="form-control" aria-label="selectexample">
+                        <option value="" disabled selected hidden>Seleccione Municipio</option>
                         <option v-for="(muni) in municipio" v-bind:key ="muni.ID_MUN" :value="muni.ID_MUN">{{muni.MUNICIPIO}}</option>
                     </select>
                     <!-- <input type="text" v-model="form.municipio" class="form-control" id="municipio" placeholder="Municipio Social Empresa" > -->
