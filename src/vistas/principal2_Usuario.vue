@@ -15,11 +15,14 @@
 
         <div class="informacion_consultar">
             <label for="form control"> ID Consulta</label>
-            <input class="form-control" type="text" placeholder="" aria-label="default input">
+            <input class="form-control" v-model="tkconsultar" type="text" placeholder="" aria-label="default input">
             <br>
             <button type="button" class="btn btn-success" v v-on:click="Irconsulta">Consultar</button>
-            
+                <br>
         </div>
+            <div v-if="mostrarerror==1" v-on:click="ocultar" class="alert alert-warning" role="alert">
+                {{errorconsulta}}
+            </div>
     </div>
 </template>
 <style scoped>
@@ -59,13 +62,36 @@
 <script>
 
 export default({
-    setup() {
-        
+    data() {
+        return{
+           tkconsultar:"",
+           errorconsulta:"",
+           mostrarerror:0
+        }
     },
     methods:{
         Irconsulta(){
-            var consulta= 'BFbZuo0821';
-            this.$router.push('/'+consulta+'/Consulta')
+            // var tkrecibido = this.tkconsultar.length;
+            
+            if(this.tkconsultar=="" ){
+                this.errorconsulta="Porfavor Ingrese su ID Consulta"
+                this.mostrarerror=1
+ 
+            }else{
+                if(this.tkconsultar.length != 10){
+                    this.errorconsulta="Porfavor Ingrese ID Consulta Valido"
+                    this.mostrarerror=1
+                }else {
+                    alert(this.tkconsultar.length)
+                }
+            // this.$router.push('/'+this.tkconsultar+'/Consulta')
+            }
+            //'BFbZuo0821'
+            // alert(this.tkconsultar);
+        },
+        ocultar(){
+         this.mostrarerror=0
+        
         }
     }
 })

@@ -3,7 +3,7 @@
         <form>
         <div v-show="vista==='noanonimo'">
                 <div class="Titulo">
-                <h4><span class="indicador">1</span> Datos Personales</h4>
+                <h4><span class="indicador">A</span> Datos Personales</h4>
             </div>
 
             <div class="formulario1" >
@@ -33,12 +33,12 @@
                 </div>
             </div>
         </div>   
-        <br>
+        
 
         <div class="Titulo">
-            <h4><span class="indicador" v-if="vista==='noanonimo'">2</span>
-            <span class="indicador" v-else>1</span>
-            Datos Proveedor</h4>
+            <h4><span class="indicador" v-if="vista==='noanonimo'">B</span>
+            <span class="indicador" v-else>A</span>
+            Informacion de la Empresa</h4>
         </div>
         <div class="formulario1">
             
@@ -90,12 +90,12 @@
                 </div>
             </div>
         </div>
-        <br>
+        
 
             <div class="Titulo">
-                <h4><span class="indicador" v-if="vista==='noanonimo'">3</span>
-                <span class="indicador" v-else>2</span>
-                Detalle Queja</h4>
+                <h4><span class="indicador" v-if="vista==='noanonimo'">C</span>
+                <span class="indicador" v-else>B</span>
+                Detalles de la Queja</h4>
             </div>
             <div class="formulario1">
                     <div class="form-row">
@@ -120,18 +120,17 @@
                         </div>
 
                     </div>
-                    <div class="form-row">
+                    <!-- <div class="form-row">
                     
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Seleccione un Pdf de la factura</label>
                             <input type="file" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                    </div>
+                    </div> -->
             </div>
-            <br>
-            
-            <button type="button"  class="btn btn-secondary" v-on:click="alta_queja">Submit</button>        
+                        
     </form> 
+    <button type="button"  class="btn btn-success" v-on:click="alta_queja">Enviar Queja</button>        
 </div>
 </template>
 <script>
@@ -229,16 +228,21 @@ export default {
 
 <style scoped>
 .Titulo{
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
     height: 12%;
-     border-bottom: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+}
+.Titulo span{
+    font-weight: bold;
+    font-size: medium;
 }
 .indicador{
     color: white;
     font-weight: bolder ;
     background-color: black;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     border: 2px solid grey;
     border-radius: 100%;
 }

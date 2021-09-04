@@ -92,7 +92,7 @@ export default {
     align-items: center;
     justify-content: center;
     width: 95%;
-    height: 80%;
+    height: 92%;
     margin: auto;
     /* box-shadow: 0px 5px 8px lightgray; */
     /* padding: 20px; */
