@@ -45,11 +45,11 @@
             <div class="form-row">
                 <div class="col">
                     <label for="exampleInputEmail1">Empresa</label>
-                    <input type="text" v-model="form.empresa" class="form-control" id="empresa" placeholder="Nombre de la empresa" >
+                    <input type="text"  class="form-control" id="empresa" placeholder="Nombre de la empresa" >
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Razon Social</label>
-                    <input type="text" v-model="form.razon" class="form-control" id="razon" placeholder="Razon Social Empresa" >
+                    <input type="text" class="form-control" id="razon" placeholder="Razon Social Empresa" >
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Nit</label>
@@ -101,22 +101,22 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="exampleInputEmail1">No. Factura</label>
-                            <input type="text" class="form-control" id="factura" placeholder="No. Factura" >
+                            <input type="text" v-model="form.factemp" class="form-control" id="factura" placeholder="No. Factura" >
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1">Fecha Emision</label>
-                            <input type="date" class="form-control" id="fecha" placeholder="Fecha Emision" >
+                            <input type="date" v-model="form.facfechatemp" class="form-control" id="fecha" value="" placeholder="Fecha Emision" >
                         </div>
 
                     </div>
                     <div class="form-row">
                         <div class="col">
                             <label for="exampleInputEmail1">Detalle de lo sucedido</label>
-                            <textarea type="text" class="form-control" id="detalle1" placeholder="" ></textarea>
+                            <textarea type="text" v-model="form.quejaemp" class="form-control" id="detalle1" placeholder="" ></textarea>
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1">Que solicita </label>
-                            <textarea type="" class="form-control" id="detalle2" placeholder="" ></textarea>
+                            <textarea type="text" v-model="form.requiereemp" class="form-control" id="detalle2" placeholder="" ></textarea>
                         </div>
 
                     </div>
@@ -171,12 +171,15 @@ export default {
              "celular":"",
              "correo":"",
              "direccion":"",
-             "empresa":"",
              "nit":"",
              "direccionemp":"",
              "zona":"",
              "telefonoemp":"",
-             "correoemp":""};
+             "correoemp":"",
+             "factemp":"",
+             "facfechatemp":"",
+             "quejaemp":"",
+             "requiereemp":""};
     //  console.log(this.departamento);
     },
     opcionver(){
@@ -191,15 +194,15 @@ export default {
       },
       alta_queja(){
         //   console.log(this.form);
-        //    console.log(this.form);
+           console.log(this.form);
             axios.post("http://localhost/Quejas_api/cliente.php",this.form)
             .then(data => {
                   if(data.status==200){
                       
-                      var valortk = data.statusText;
-                      alert("se inserto correctamente"+valortk);
-                    //   console.log(data.request)
-                      this.$router.push('/'+valortk +'/Consulta')
+                    var valortk = data.statusText;
+                    //   alert("se inserto correctamente"+valortk);
+                    console.log(data.request)
+                    this.$router.push('/'+valortk +'/Consulta')
                   }
            })
         
