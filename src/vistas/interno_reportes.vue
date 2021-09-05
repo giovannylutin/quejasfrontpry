@@ -56,9 +56,64 @@
                     </div>
                 </div>
             </div>
-        
+            <div class="dropdown-divider"></div>
+            <button type="button"  class="btn btn-success btn-sm" >Consultar</button>
+            <button type="button"  class="btn btn-danger btn-sm" >Imprimir</button>
+           
         </div>
-        <div class="Reportes_graficas"></div>
+
+        <div class="Reportes_graficas">
+            <div class="Reportes_datos-titulo">
+                <h4>datos</h4>
+            </div>
+            <div class="Reportes_graficas-informacion">
+                <div>
+                    empresa
+                </div>
+                <div>
+                    total quejas pais
+                </div>   
+                <div>
+                    mes en curso quejas
+                </div>
+            </div>
+            <div class="Reportes_graficas-detalles">
+                
+                <div>
+                <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+                </div>
+            
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -125,11 +180,24 @@ export default({
     /* outline: 2px solid black; */
     width: 75%;
     height: 100%;
+    padding-left: 10px;
 }
 .Reportes_datos-campos{
     padding-right: 8px;
     padding-left: 8px;
 
+}
+button{
+    margin-left: 8px;
+}
+.Reportes_graficas-informacion{
+    /* outline: 2px solid red; */
+    height: 25%;
+}
+.Reportes_graficas-detalles{
+    /* outline: 2px solid red; */
+    height: 65%;
+     overflow-y: scroll;
 }
 
 </style>
