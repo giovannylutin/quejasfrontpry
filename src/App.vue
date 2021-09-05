@@ -62,7 +62,7 @@ export default {
     display: flex;
     flex-direction: column;
     /* width: 100%; */
-    height: 80%;
+    height: 90%;
 }
 .panel_vistas{
     /* outline: 2px solid  blue; */
@@ -103,7 +103,7 @@ export default {
     flex-direction: column;
     align-items: center;
     /* outline: 2px solid red; */
-    height: 9.2%;
+    height: 6%;
     background-color: #343a40;
     color: white;  
 }
