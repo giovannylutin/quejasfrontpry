@@ -1,23 +1,21 @@
 <template>
     <div class="informacion">
         <div class="informacion_detalle">
-            <h4 class="informacion_detalle-titulo">Recepcion de Quejas Online</h4>
-            <p>Para facilitar de mejor manera una queja ante la Diaco y manteniendo tu anonimato,
-                se ha habilitado esta opcion on line si tienes dudas de los pasos a seguir 
-                y usuarlo de la mejor manera consultando el documento<b> AQUI ABAJO</b>.
+            <h4 class="informacion_detalle-titulo"></h4>
+            <p>Consulta Tu Queja<b> AQUI ABAJO</b>.
             </p>
-            <span>Ver Informacion </span>
+            <!-- <span>Ver Informacion </span>
             <a href="">
                 <img src="http://drive.google.com/uc?export=view&id=1lAHKP0AHY5SZNZOCSBDQybNN7KgST1pO" 
                 width="30px" height="30px" alt="">
-            </a>
+            </a> -->
         </div>
 
         <div class="informacion_consultar">
             <label for="form control"> ID Consulta</label>
             <input class="form-control" v-model="tkconsultar" type="text" placeholder="" aria-label="default input">
             <br>
-            <button type="button" class="btn btn-success" v v-on:click="Irconsulta">Consultar</button>
+            <button type="button" class="btn btn-success" v-on:click="Irconsulta">Consultar</button>
                 <br>
         </div>
             <div v-if="mostrarerror==1" v-on:click="ocultar" class="alert alert-warning" role="alert">
@@ -27,18 +25,21 @@
 </template>
 <style scoped>
 .informacion{
+    /* outline: 2px solid red; */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: justify;
     justify-content: center;
     margin-left: 20px;
+     box-shadow: 0px 5px 8px lightgray;
 }
 .informacion_detalle h4{
     font-weight: bold;
 }
 .informacion_detalle p{
     margin-left: 10px;
+    text-align: center;
     font-stretch: semi-condensed;
 }
 .informacion_detalle span{
@@ -81,12 +82,15 @@ export default({
                 if(this.tkconsultar.length != 10){
                     this.errorconsulta="Porfavor Ingrese ID Consulta Valido"
                     this.mostrarerror=1
+
                 }else {
-                    alert(this.tkconsultar.length)
+                    // alert(this.tkconsultar.length)
+                    this.$router.push('/'+this.tkconsultar+'/Consulta')
                 }
             // this.$router.push('/'+this.tkconsultar+'/Consulta')
             }
             //'BFbZuo0821'
+            //AKe8tE0921
             // alert(this.tkconsultar);
         },
         ocultar(){

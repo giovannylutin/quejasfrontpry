@@ -35,8 +35,14 @@ form{
     font-weight: bold;
 }
 .dat{
+    /* outline: 2px solid blue; */
+    height: 80%;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0px 5px 8px lightgray;
     margin: 30px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }

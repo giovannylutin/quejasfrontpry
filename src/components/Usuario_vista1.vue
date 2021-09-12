@@ -3,6 +3,7 @@
   <vistados class="opciones"/>
  
   <div v-if="vistaopcion===2" class="dat">
+     <h4 class="informacion_detalle-titulo">Recepcion de Quejas Online</h4>
     <vistaprincipal v-bind:titulo="opcion" @tipo_queja="cambio" @tipo_navegar="iraform"/>
     
     
@@ -86,9 +87,14 @@ components:{
 <style scoped>
 .opciones{
   width: 100%;
-  height: 100%;
+  height: 80%;
+  border-radius: 15px;
   
-  /* outline:2px solid red; */
+  /* outline:2px solid blue; */
+}
+.informacion_detalle-titulo{
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 

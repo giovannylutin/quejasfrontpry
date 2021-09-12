@@ -1,11 +1,13 @@
 <template>
     <div class="alerta">
         <div class="alerta_info">
+            
             <div class="alert alert-primary" role="alert">
+                
             <h4 class="alert-heading">Importante!!!!</h4>
             <p>
                 Recuerda que si desesas que tu consulta sea anonima debes Seleccionar 
-                la opcion SI para que tus Denuncia en Diaco sea Confidencial.
+                la opcion "SI" para que tus Denuncia en Diaco sea Confidencial.
                 
             </p>
             </div>
@@ -50,12 +52,18 @@ export default {
    text-align: center;
 }
 .alerta_info{
-  width: 80%;
+  width: 90%;
+  font-size: medium;
   /* outline: 2px solid blue; */
 }
 .alerta{
+    
+    /* height: 80%; */
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+p{
+    font-size: small;
 }
 </style>
