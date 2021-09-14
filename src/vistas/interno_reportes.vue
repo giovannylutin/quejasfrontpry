@@ -76,15 +76,15 @@
 
         <div class="Reportes_graficas">
             <div class="Reportes_datos-titulo">
-                <h4>Detalle</h4>
+                <h4>Quejas susitadas</h4>
             </div>
             <div class="Reportes_graficas-informacion">
                 <div>
-                    <h6>Nit Empresa:</h6>
+                    <h6>Nit:</h6>
                     {{this.nemp}}
                 </div>
                 <div>
-                    <h6>Quejas Recibidas:</h6>
+                    <h6>Ingresadas:</h6>
                     {{totalquejas}}
                     
                 </div>   
@@ -126,6 +126,9 @@
                 </div>
             
             </div>
+            <div class="Reportes_datos-titulo">
+                <a type="button"  class="btn btn-success btn-sm" v-bind:href="'#/Principal'" >Regresar</a>
+            </div>
         </div>
     </div>
 </template>
@@ -151,8 +154,18 @@ export default({
         }
     },
     mounted(){
-        this.regionver(),
+        
+        
+        if(localStorage.getItem('tk_sesion')){
+            // console.log("hola")
+           this.regionver(),
         this.busquedaemp()
+            // this.fillData();
+        }else{
+            alert("por favor inicie sesion")
+            this.$router.push('/Ingreso')
+            
+        }
     },
     methods: {
         regionver(){
@@ -252,6 +265,9 @@ export default({
     background-color: lightgray;
     border-radius: 10px;
 }
+.Reportes_datos-titulo{
+    display: flex;
+}
 .Reportes_datos-titulo h5,h4{
     text-align: center;
     padding-top: 3px;
@@ -289,8 +305,13 @@ button{
 }
 .Reportes_graficas-detalles{
     /* outline: 2px solid red; */
-    height: 40%;
+    margin-top: 10px;
+    height: 63%;
+    margin-bottom: 10px;
      overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 
 </style>

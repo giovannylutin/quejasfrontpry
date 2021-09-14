@@ -2,7 +2,8 @@
     <div class="paneldash">
    
     <div class="paneldash_nav">
-         <button type="button" class="btn btn-warning btn-sm" v-on:click="salir">Salir</button>
+          <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle">Detalle</button>
+          <button type="button" class="btn btn-warning btn-sm" v-on:click="salir">Salir</button>
     </div>
     <div class="paneldash_info">
         <div class="paneldash_detalle">
@@ -37,31 +38,92 @@
             </div>
 
         </div>
-        <div class="paneldash_grafica"></div>
+        <div class="paneldash_grafica">
+         <grafica-component />
+
+         <div class="paneldash_resumentot">
+        <div class="totaldetalle">
+              <table class="table table-striped table-sm btable">
+  <thead>
+    <tr>
+      <th scope="col">Region</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <td>Central</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+            <div class="totaldetalle">
+              <table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Departamento</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Central</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+        <div class="totaldetalle">
+              <table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Region</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Central</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+          </div>
+        </div>
+        </div>
+        
     </div>
     </div>
 </template>
 <script>
 import axios from "axios";
+ 
 
 export default ({
-    
+    components: {
+     
+    },
     data() {
         return{
             estado:"",
             resumen:[]
+            
         }
     },
+
     mounted(){
 
         if(localStorage.getItem('tk_sesion')){
             // console.log("hola")
             this.cargaresumen();
+            // this.fillData();
         }else{
             this.$router.push('/Ingreso')
         }
     },
     methods:{
+        paneldetalle(){this.$router.push('/Reportes')},
         salir(){
             localStorage.removeItem('tk_sesion')
             this.$router.push('/Ingreso')
@@ -72,11 +134,18 @@ export default ({
                 console.log(this.resumen)
             })
         }
+    
+    
     }
 })
 </script>
 
 <style scoped>
+.small {
+  max-width: 800px;
+  /* max-height: 500px; */
+  margin:  50px auto;
+}
 .paneldash{
     /* outline: 2px solid red; */
     width: 100%;
@@ -90,6 +159,9 @@ export default ({
     flex-direction: row;
     justify-content: flex-end;
     /* outline: 2px solid blueviolet; */
+}
+.paneldash_nav button{
+    margin-left: 15px;
 }
 .paneldash_info{
     width: 100%;
@@ -144,8 +216,42 @@ export default ({
     margin-bottom: 15px;
 }
 .paneldash_grafica{
-    outline: 2px solid red;
+    /* outline: 2px solid red; */
+    padding-left: 15px;
     width: 70%;
-    height: 100%;
+    height: 95%;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+     box-shadow: 0px 5px 8px lightgray;
 }
+.paneldash_resumentot{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45%;
+    
+}
+.totaldetalle{
+  width: 190px;
+  border-radius: 10px;
+  height: 160px;
+   border: 2px solid lightgray;
+    box-shadow: 0px 5px 8px lightgray;
+   margin: auto;
+   overflow-y: scroll;
+   overflow-x: scroll;
+  
+}
+.btable{
+ overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
 </style>

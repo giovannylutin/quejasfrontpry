@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="">
-              <img src="./assets/logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
-              {{ titulo }}
+            <a class="navbar-brand" href="/">
+              <img src="./assets/logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                         <!-- {{ titulo }} -->
             </a>
+            <a class="navbar-brand" v-bind:href="'#/Ingreso'">Login</a>
+  
+
+            <!-- <span>h</span>
+            <a >Ingreso</a>  -->
     </nav>
     <section class="panel">
       <div class="panel_vistas">
@@ -34,6 +39,12 @@ export default {
    return{
         titulo:'Quejas Anonimas',
         autor:'Adam Giovannny Lutin Lutin.'
+        ,ruta:this.$router
+   }
+ },
+ methods:{
+   log(){
+     this.$router.push('/Ingreso')
    }
  }
 

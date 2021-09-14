@@ -39,6 +39,16 @@ export default ({
             }
         }
     },
+    mounted(){
+        if(localStorage.getItem('tk_sesion')){
+             this.$router.push('/Principal')
+        }else{
+            // alert("por favor inicie sesion")
+        //    this.$router.push('/Principal')
+            
+        }
+    }
+    ,
       methods:{
           autenticar(){
             //   console.log(Global.url)
@@ -54,31 +64,33 @@ export default ({
                             this.$router.push('/Principal')
                         // console.log(this.campos)
                       }else{
-                          console.log("opps")
+                          alert("Oops porfavor inicia sesion ")
                       }        
                     // var valortk = data.statusText;
                     //   alert("se inserto correctamente"+valortk);
                     // this.$router.push('/'+valortk +'/Consulta')
+                  }else{
+                       alert("Oops ingresa campos")
                   }
            })
           },
           ingresar(){
-              if(this.usuariop=="" || this.passp==""){
-                  alert("al parecer hay campos vacios")
-              }
-              else{
-                  axios.get ("http://localhost/Quejas_api/ingreso.php?user="+this.usuariop+"&pass="+this.passp) .then (res => {        
-            if(res.data!=0){
-                this.$router.push('Principal')
-                // if(){}
-                    // this.miqueja = res.data; 
-                    // console.log(res.data[]);
-                // alert("sip");
-            }else{
-                alert("al paraecer no tienes permisos para ingresar");
-            }
-            })
-              }
+            //   if(this.usuariop=="" || this.passp==""){
+            //       alert("al parecer hay campos vacios")
+            //   }
+            //   else{
+            //       axios.get ("http://localhost/Quejas_api/ingreso.php?user="+this.usuariop+"&pass="+this.passp) .then (res => {        
+            // if(res.data!=0){
+            //     this.$router.push('Principal')
+            //     // if(){}
+            //         // this.miqueja = res.data; 
+            //         // console.log(res.data[]);
+            //     // alert("sip");
+            // }else{
+            //     alert("al paraecer no tienes permisos para ingresar");
+            // }
+            // })
+            //   }
           }
       }
 })

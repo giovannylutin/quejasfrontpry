@@ -6,6 +6,7 @@ import "./assets/app.css"
 // import "bootstrap/dist/css/bootstrap.min.css";
 import vueRouter from 'vue-router'
 import Routes from './Mis_rutas'
+Vue.component('grafica-component', require('./Graficas/graficos.vue').default);
 
 Vue.use(vueRouter)
 Vue.config.productionTip = false
