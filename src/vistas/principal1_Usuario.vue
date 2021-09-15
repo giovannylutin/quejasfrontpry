@@ -7,13 +7,12 @@
             <h4 class="alert-heading">Importante!!!!</h4>
             <p>
                 Recuerda que si desesas que tu consulta sea anonima debes Seleccionar 
-                la opcion "SI" para que tus Denuncia en Diaco sea Confidencial.
-                
+                la opcion <b> "ANONIMA" </b> que tus Denuncia en Diaco sea Confidencial.
             </p>
             </div>
             <div class="custom-control custom-switch op">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1" value="NO" v-on:change="seleccionar" >
-                <label class="custom-control-label" for="customSwitch1"><span id="TEXTO">NO</span></label>
+                <label class="custom-control-label" for="customSwitch1"><span id="TEXTO">NO ANONIMA</span></label>
             </div>
         </div>
         
@@ -56,6 +55,9 @@ export default {
   font-size: medium;
   /* outline: 2px solid blue; */
 }
+.op span{
+    font-weight: bold;
+}
 .alerta{
     
     /* height: 80%; */
@@ -65,5 +67,6 @@ export default {
 }
 p{
     font-size: small;
+    margin: 5px;
 }
 </style>

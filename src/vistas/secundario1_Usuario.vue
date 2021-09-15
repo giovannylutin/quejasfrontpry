@@ -41,7 +41,7 @@
             Informacion de la Empresa</h4>
         </div>
         <div class="formulario1">
-            
+            <!-- nivel 1 empresa -->
             <div class="form-row">
                 <div class="col">
                     <label for="exampleInputEmail1">Empresa</label>
@@ -53,10 +53,10 @@
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Nit</label>
-                    <input type="text" v-model="form.nit" class="form-control" id="nit" placeholder="Nit de la Empresa" >
+                    <input type="text" v-model="form.nit" class="form-control" id="nit" maxlength="7" placeholder="Nit de la Empresa" >
                 </div>
             </div>
-
+            <!-- nivel 2 empresa -->
             <div class="form-row">
                 <div class="col">
                     <label for="exampleInputEmail1">Direccion</label>
@@ -64,17 +64,17 @@
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Zona</label>
-                    <input type="text" v-model="form.zona" class="form-control" id="zona" placeholder="Zona Social Empresa" >
+                    <input type="text" v-model="form.zona" class="form-control" id="zona" placeholder="Zona Social Empresa" maxlength="2">
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Telefono</label>
-                    <input type="text" v-model="form.telefonoemp" class="form-control" id="telefonoe" placeholder="Telefono de la Empresa" >
+                    <input type="text" v-model="form.telefonoemp" class="form-control" id="telefonoe" placeholder="Telefono de la Empresa" maxlength="9" >
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
                     <label for="selectexample">Departamento</label>
-                    <select v-model="form.departamento" class="form-control"  v-on:change="cambiarmun">
+                    <select v-model="form.departamento" class="form-control"  v-on:change="cambiarmun" required>
                          <option value="" disabled selected hidden>Seleccione Departamento</option>
                         <option v-for="(depa) in departamento" v-bind:key ="depa.ID_DEP" :value="depa.ID_DEP">{{depa.DEPARTAMENTO}}</option>
                     </select>
@@ -195,16 +195,19 @@ export default {
       alta_queja(){
         //   console.log(this.form);
            console.log(this.form);
-            axios.post("http://localhost/Quejas_api/cliente.php",this.form)
-            .then(data => {
-                  if(data.status==200){
+           if(this.form.departamento=="" || this.form.municipio==""){
+               console.log("dep vacio")
+           }
+        //     axios.post("http://localhost/Quejas_api/cliente.php",this.form)
+        //     .then(data => {
+        //           if(data.status==200){
                       
-                    var valortk = data.statusText;
-                    //   alert("se inserto correctamente"+valortk);
-                    console.log(data.request)
-                    this.$router.push('/'+valortk +'/Consulta')
-                  }
-           })
+        //             var valortk = data.statusText;
+        //             //   alert("se inserto correctamente"+valortk);
+        //             console.log(data.request)
+        //             this.$router.push('/'+valortk +'/Consulta')
+        //           }
+        //    })
         
       },
       cambiarmun(){

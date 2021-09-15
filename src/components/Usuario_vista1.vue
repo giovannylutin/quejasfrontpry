@@ -8,11 +8,12 @@
     
     
     <br>
-    <div v-if="opcion===1">
-      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/noanonimo'">{{botonmsg}}</button>
+    <div v-if="opcion===1" class="btntama">
+       <!-- <label for="form control"></label> -->
+      <button type="button" class="btn btn-success " onClick="parent.location='#/Ingresso_Formulario/noanonimo'">{{botonmsg}}</button>
     </div>
     <div v-else-if="opcion===0">
-      <button type="button" class="btn btn-dark" onClick="parent.location='#/Ingresso_Formulario/anonimo'">{{botonmsg}}</button>
+      <button type="button" class="btn btn-success" onClick="parent.location='#/Ingresso_Formulario/anonimo'">{{botonmsg}}</button>
     </div>
     
   </div>
@@ -34,7 +35,7 @@ components:{
  data(){
    return{
         opcion:1,
-        botonmsg: 'Ingresar Queja',
+        botonmsg: 'Emitir Queja',
         vistaopcion:2,
         tituloalerta:'Importante!!!!',
         alertacontenido:"Si tu consulta es anonima favor de seleccionar la Opcion SI,en caso contrario pulsa el boton siguiente para continuar con tu denucia anonima.",
@@ -47,12 +48,12 @@ components:{
           if (valorone == 0){
             // console.log(valorone)
              this.opcion=1
-             document.getElementById('TEXTO').innerHTML="NO"
+             document.getElementById('TEXTO').innerHTML="NO ANONIMA"
           }
           else{
             // console.log(valorone)
             this.opcion=0
-            document.getElementById('TEXTO').innerHTML="SI"
+            document.getElementById('TEXTO').innerHTML="ANONIMA"
           }
         // var doc=document.getElementById('customSwitch1').value;
         // var valorone= this.opcion
@@ -90,7 +91,18 @@ components:{
   height: 80%;
   border-radius: 15px;
   
+  
   /* outline:2px solid blue; */
+}
+.btntama button{
+  width: 100%;
+}
+.btntama{
+  /* outline:2px solid blue; */
+  width: 50%;
+  /* height: 39px; */
+  /* margin: auto; */
+  /* display: block; */
 }
 .informacion_detalle-titulo{
   font-weight: bold;

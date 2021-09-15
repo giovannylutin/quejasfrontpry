@@ -2,8 +2,8 @@
     <div class="informacion">
         <div class="informacion_detalle">
             <h4 class="informacion_detalle-titulo"></h4>
-            <p>Consulta Tu Queja<b> AQUI ABAJO</b>.
-            </p>
+           <h5>Consulta Tu Queja<b> AQUI ABAJO</b>.</h5>
+           <img class="imgcentrado" src="http://drive.google.com/uc?export=view&id=1M4M9lGbeLcv0O8Fpw_QUCyvRgEuBk4OB" alt="">
             <!-- <span>Ver Informacion </span>
             <a href="">
                 <img src="http://drive.google.com/uc?export=view&id=1lAHKP0AHY5SZNZOCSBDQybNN7KgST1pO" 
@@ -14,16 +14,19 @@
         <div class="informacion_consultar">
             <label for="form control"> ID Consulta</label>
             <input class="form-control" v-model="tkconsultar" type="text" placeholder="" aria-label="default input">
-            <br>
             <button type="button" class="btn btn-success" v-on:click="Irconsulta">Consultar</button>
-                <br>
         </div>
+        <div class="informacion_mensaje">
             <div v-if="mostrarerror==1" v-on:click="ocultar" class="alert alert-warning" role="alert">
                 {{errorconsulta}}
             </div>
+        </div>
     </div>
 </template>
 <style scoped>
+.informacion_mensaje{
+height: 45px;
+}
 .informacion{
     /* outline: 2px solid red; */
     display: flex;
@@ -33,19 +36,30 @@
     justify-content: center;
     margin-left: 20px;
      box-shadow: 0px 5px 8px lightgray;
+      border: 2px solid lightgray;
 }
 .informacion_detalle h4{
     font-weight: bold;
 }
-.informacion_detalle p{
+.informacion_detalle h5{
     margin-left: 10px;
     text-align: center;
-    font-stretch: semi-condensed;
+    font-stretch: semi-expanded;
+    
+}
+.informacion_detalle{
+    /* outline: 2px solid red; */
+    width: 100%;
 }
 .informacion_detalle span{
     margin-left: 10px;
     font-weight: bold;
    
+}
+.imgcentrado{
+  margin:5px auto;
+  display:block;
+  height: 45px;  
 }
 .informacion_consultar{
     display: flex;
@@ -54,6 +68,12 @@
     text-align: center;
     margin-top: 10px;
     /* outline: 2px solid blue; */
+    width: max-content;
+    height: fit-content;
+}
+.informacion_consultar button{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .informacion_consultar label{
     font-weight: bold;
