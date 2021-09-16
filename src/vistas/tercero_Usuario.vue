@@ -70,6 +70,7 @@
 
            </div>
        </div>
+       <FlashMessage :position="'right top'"></FlashMessage>
        <!-- {{miqueja}} -->
 
        
@@ -82,7 +83,8 @@ export default ({
     data() {
         return{
             miqueja:[{ESTADO:''}],
-            estatusproceso:1
+            estatusproceso:1,
+            mirutahost: this.GLOBAL.serverSrc
         }
     },
     mounted(){
@@ -99,12 +101,14 @@ export default ({
     methods:{
          consultardenuncia(){
           console.log(this.$route.params.tk)
-           axios.get ("http://localhost/Quejas_api/cliente.php?id="+this.$route.params.tk) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+           axios.get (this.mirutahost+"/Quejas_api/cliente.php?id="+this.$route.params.tk) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  
                 
            if(res.data!=0){
                 this.miqueja = res.data; 
-                 console.log(this.miqueja);
+                // console.log(this.mirutahost);
+                this.flashMessage.show({status:'success',title:'Listo',message:'Estos son los Detalles de tu queja ingresada',time: 5000});
+
            }else{
                alert("no trae datos");
            }

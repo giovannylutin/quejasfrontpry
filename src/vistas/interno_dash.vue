@@ -44,35 +44,35 @@
          <div class="paneldash_resumentot">
         <div class="totaldetalle">
               <table class="table table-striped table-sm btable">
-  <thead>
-    <tr>
-      <th scope="col">Region</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody >
-    <tr>
-      <td>Central</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
+                <thead>
+                  <tr>
+                    <th scope="col">Region</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr v-for="(resreg,index) in informacionresumen.regionresumen[0]" v-bind:key ="index++">
+                    <td>{{resreg.REGION}}</td>
+                    <td>{{resreg.total}}</td>
+                  </tr>
+                </tbody>
+            </table>
           </div>
             <div class="totaldetalle">
               <table class="table table-striped table-sm">
-  <thead>
-    <tr>
-      <th scope="col">Departamento</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Central</td>
-      <td>10</td>
-    </tr>
-  </tbody>
-</table>
+              <thead>
+                <tr>
+                  <th scope="col">Departamento</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="(resreg,index) in informacionresumen.departamentoresumen[0]" v-bind:key ="index++">
+                    <td>{{resreg.DEPARTAMENTO}}</td>
+                    <td>{{resreg.total}}</td>
+                  </tr>
+               </tbody>
+              </table>
           </div>
         <div class="totaldetalle">
               <table class="table table-striped table-sm">
@@ -83,10 +83,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Central</td>
-      <td>10</td>
-    </tr>
+<tr v-for="(resreg,index) in informacionresumen.muncipioresumen[0]" v-bind:key ="index++">
+<td>{{resreg.MUNICIPIO}}</td>
+<td>{{resreg.total}}</td>
+</tr>
   </tbody>
 </table>
           </div>
@@ -107,8 +107,8 @@ export default ({
     data() {
         return{
             estado:"",
-            resumen:[]
-            
+            resumen:[],
+            informacionresumen:[]            
         }
     },
 
@@ -117,6 +117,7 @@ export default ({
         if(localStorage.getItem('tk_sesion')){
             // console.log("hola")
             this.cargaresumen();
+            this.resumenporlocalidad();
             // this.fillData();
         }else{
             this.$router.push('/Ingreso')
@@ -129,9 +130,15 @@ export default ({
             this.$router.push('/Ingreso')
         },
         cargaresumen(){
-            axios.get ("http://localhost/Quejas_api/ingreso.php") .then (res => { 
+            axios.get (this.GLOBAL.serverSrc+"/Quejas_api/ingreso.php") .then (res => { 
                 this.resumen = res.data; 
-                console.log(this.resumen)
+                // console.log(this.resumen)
+            })
+        },
+        resumenporlocalidad(){
+           axios.get (this.GLOBAL.serverSrc+"/Quejas_api/dash.php") .then (res => { 
+                this.informacionresumen = res.data; 
+                 console.log(this.informacionresumen.regionresumen)
             })
         }
     

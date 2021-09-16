@@ -20,7 +20,7 @@
     </div>
     
     <div class="login_botones">
-        
+        <FlashMessage :position="'right top'"></FlashMessage>
         <button type="button" class="btn btn-success" v-on:click="autenticar" id="inputPassword">Ingresar</button>
     </div>
 </div>
@@ -50,47 +50,54 @@ export default ({
     }
     ,
       methods:{
-          autenticar(){
-            //   console.log(Global.url)
-            // console.log(this.form);
-            axios.post("http://localhost/Quejas_api/ingreso.php",this.campos)
+    autenticar(){
+        // console.log("HOLA")
+        if(this.campos.usuariop==""||this.campos.passp==""){
+             this.flashMessage.show({status:'error',title:'!!OOPSS',message:'Recuerda que los campos USUARIO Y CONTRASEÑA son obligatorios',time: 5000});
+        }else{
+            axios.post(this.GLOBAL.serverSrc+"/Quejas_api/ingreso.php",this.campos)
             .then(data => {
-                  if(data.status==200){ 
-                      if(data.request.statusText!="Usuario no encontrado"){
+                if(data.status==200){ 
+                    if(data.request.statusText!="Usuario no encontrado"){
                         
-                            // console.log()
-                            localStorage.setItem('tk_sesion',data.data[0].TOK)
-                            // localStorage.setItem()
-                            this.$router.push('/Principal')
+                             // console.log()
+                             localStorage.setItem('tk_sesion',data.data[0].TOK)
+                             // localStorage.setItem()
+                             this.$router.push('/Principal')
                         // console.log(this.campos)
-                      }else{
-                          alert("Oops porfavor inicia sesion ")
-                      }        
-                    // var valortk = data.statusText;
-                    //   alert("se inserto correctamente"+valortk);
-                    // this.$router.push('/'+valortk +'/Consulta')
-                  }else{
-                       alert("Oops ingresa campos")
-                  }
+                    }else{
+                        this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'Alparecer tu USUARIO Y CONTRASEÑA SON INCORRECTOS ',time: 5000});
+                    }
+             }
            })
+        }
+        // if(this.campos.usuariop!="" || this.campos.passp!=""){
+        //     axios.post(this.GLOBAL.serverSrc+"/Quejas_api/ingreso.php",this.campos)
+        //     .then(data => {
+        //           if(data.status==200){ 
+        //               if(data.request.statusText!="Usuario no encontrado"){
+                        
+        //                     // console.log()
+        //                     localStorage.setItem('tk_sesion',data.data[0].TOK)
+        //                     // localStorage.setItem()
+        //                     this.$router.push('/Principal')
+        //                 // console.log(this.campos)
+        //               }else{
+        //                    this.flashMessage.show({status:'error',title:'!!OOPSS',message:'Debes iniciar sesion',time: 5000});
+        //               }        
+        //             // var valortk = data.statusText;
+        //             //   alert("se inserto correctamente"+valortk);
+        //             // this.$router.push('/'+valortk +'/Consulta')
+        //           }else{
+        //                alert("Oops ingresa campos")
+        //           }
+        //    })
+        //       }else{
+        //           this.flashMessage.show({status:'error',title:'!!OOPSS',message:'Debes ingresar tu USUARIO Y PASSWORD',time: 5000});
+        //       }
+
           },
           ingresar(){
-            //   if(this.usuariop=="" || this.passp==""){
-            //       alert("al parecer hay campos vacios")
-            //   }
-            //   else{
-            //       axios.get ("http://localhost/Quejas_api/ingreso.php?user="+this.usuariop+"&pass="+this.passp) .then (res => {        
-            // if(res.data!=0){
-            //     this.$router.push('Principal')
-            //     // if(){}
-            //         // this.miqueja = res.data; 
-            //         // console.log(res.data[]);
-            //     // alert("sip");
-            // }else{
-            //     alert("al paraecer no tienes permisos para ingresar");
-            // }
-            // })
-            //   }
           }
       }
 })

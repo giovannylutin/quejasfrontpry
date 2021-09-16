@@ -60,7 +60,7 @@
             <div class="form-row">
                 <div class="col">
                     <label for="exampleInputEmail1">Direccion</label>
-                    <input type="text" v-model="form.direccionemp" class="form-control" id="direccion" placeholder="Direccion de la empresa" >
+                    <input type="text" v-model="form.direccionemp" class="form-control" id="direccion" placeholder="Direccion de la empresa">
                 </div>
                 <div class="col">
                     <label for="exampleInputEmail1">Zona</label>
@@ -130,7 +130,8 @@
             </div>
                         
     </form> 
-    <button type="button"  class="btn btn-success" v-on:click="alta_queja">Enviar Queja</button>        
+    <FlashMessage :position="'right top'"></FlashMessage>
+    <button type="submit"  class="btn btn-success" v-on:click="alta_queja">Enviar Queja</button>        
 </div>
 </template>
 <script>
@@ -195,20 +196,39 @@ export default {
       alta_queja(){
         //   console.log(this.form);
            console.log(this.form);
-           if(this.form.departamento=="" || this.form.municipio==""){
-               console.log("dep vacio")
+           if(this.form.nit==""){
+               this.mensajes("El campo Nit es obligatorio")
            }
-        //     axios.post("http://localhost/Quejas_api/cliente.php",this.form)
-        //     .then(data => {
-        //           if(data.status==200){
-                      
-        //             var valortk = data.statusText;
-        //             //   alert("se inserto correctamente"+valortk);
-        //             console.log(data.request)
-        //             this.$router.push('/'+valortk +'/Consulta')
-        //           }
-        //    })
+           else if(this.form.departamento=="" || this.form.municipio==""){
+                this.mensajes("El campo Departamento y Muncipio es obligatorio")
+           }else if(this.form.direccionemp==""){
+               this.mensajes("El campo Direccion de la Empresa es obligatorio")
+           }else if(this.form.factemp==""){
+               this.mensajes("El campo No. factura es obligatorio")
+           }else if(this.form.facfechatemp==""){
+               this.mensajes("El campo Fecha de emision es obligatorio")
+           }else if (this.form.quejaemp==""){
+               this.mensajes("El campo Detalle de la queja es obligatorio")
+           }else{
+                           axios.post("http://localhost/Quejas_api/cliente.php",this.form)
+            .then(data => {
+                  if(data.status==200){
+                      if(data.statusText=='fail'){
+                          console.log("no se inserto")
+                      }else{
+                    var valortk = data.statusText;
+                    //   alert("se inserto correctamente"+valortk);
+                    console.log(data.request)
+                    this.$router.push('/'+valortk +'/Consulta')
+                      }
+                  }
+           })
+           }
         
+      },
+      mensajes(mensaje){
+          var tit = "Campos vacios"
+          this.flashMessage.show({status:'warning',title:tit,message:mensaje,time: 5000});
       },
       cambiarmun(){
           this.form.departamento;
