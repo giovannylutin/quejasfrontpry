@@ -45,12 +45,12 @@
             <div class="form-row">
                 <div class="col">
                     <label for="exampleInputEmail1">Empresa</label>
-                    <input type="text"  class="form-control" id="empresa" placeholder="Nombre de la empresa" >
+                    <input type="text" v-model="form.nemp"  class="form-control" id="empresa" placeholder="Nombre de la empresa" >
                 </div>
-                <div class="col">
+                <!-- <div class="col">
                     <label for="exampleInputEmail1">Razon Social</label>
                     <input type="text" class="form-control" id="razon" placeholder="Razon Social Empresa" >
-                </div>
+                </div> -->
                 <div class="col">
                     <label for="exampleInputEmail1">Nit</label>
                     <input type="text" v-model="form.nit" class="form-control" id="nit" maxlength="7" placeholder="Nit de la Empresa" >
@@ -128,21 +128,29 @@
                         </div>
                     </div> -->
             </div>
-                        
+                  <FlashMessage :position="'right bottom'"></FlashMessage>       
     </form> 
-    <FlashMessage :position="'right top'"></FlashMessage>
-    <button type="submit"  class="btn btn-success" v-on:click="alta_queja">Enviar Queja</button>        
+    <div class="botonesf">
+        <infomodal v-if="mostrarinfo==true" @okcerrar="cambiocerarrar" />
+            <button type="submit"  class="btn btn-success" v-on:click="alta_queja">Enviar Queja</button>
+            <button type="submit"  class="btn btn-info"  v-on:click="retornar">Salir</button>  
+    </div>      
 </div>
 </template>
 <script>
  import axios from "axios";
-
+ 
+import infomodal from './modal_informativo.vue';
 export default {
 //   created() {
 //     axios.get("http://localhost/Quejas_api/cliente.php?id=42").then((result) => {
 //       console.log(result.data);
 //     })
 //   },
+components:{
+  infomodal
+  // vistaformulario
+},
 
   data(){
       return{
@@ -150,13 +158,17 @@ export default {
          departamento:[],
          municipio:[],
          form:{},        
-         vista:'noanonimo'
+         vista:'noanonimo',
+         mostrarinfo:true
       }
   },
   mounted(){
        this.opcionver(),
        this.llenarform(),
        this.llenarmunicipio()
+       if(localStorage.getItem('tk_info')){
+            this.mostrarinfo=false
+       }
        
         
   },
@@ -172,6 +184,7 @@ export default {
              "celular":"",
              "correo":"",
              "direccion":"",
+             "nemp":"",
              "nit":"",
              "direccionemp":"",
              "zona":"",
@@ -210,15 +223,17 @@ export default {
            }else if (this.form.quejaemp==""){
                this.mensajes("El campo Detalle de la queja es obligatorio")
            }else{
-                           axios.post("http://localhost/Quejas_api/cliente.php",this.form)
+            axios.post("http://localhost/Quejas_api/cliente.php",this.form)
             .then(data => {
                   if(data.status==200){
                       if(data.statusText=='fail'){
                           console.log("no se inserto")
+                          console.log(data.request)
                       }else{
                     var valortk = data.statusText;
                     //   alert("se inserto correctamente"+valortk);
                     console.log(data.request)
+                    localStorage.removeItem('tk_sesion')
                     this.$router.push('/'+valortk +'/Consulta')
                       }
                   }
@@ -227,7 +242,7 @@ export default {
         
       },
       mensajes(mensaje){
-          var tit = "Campos vacios"
+          var tit = "CAMPOS VACIOS"
           this.flashMessage.show({status:'warning',title:tit,message:mensaje,time: 5000});
       },
       cambiarmun(){
@@ -246,6 +261,15 @@ export default {
             //    console.log('success');
             //   console.log(this.departamento);
       })
+      },
+      retornar(){
+          localStorage.removeItem('tk_info')
+          this.$router.push('/')
+      },
+      cambiocerarrar(){
+          
+          this.mostrarinfo=false
+          localStorage.setItem('tk_info',this.mostrarinfo)
       }
 
   }
@@ -271,5 +295,12 @@ export default {
     padding: 5px;
     border: 2px solid grey;
     border-radius: 100%;
+}
+.botonesf button{
+    margin-top: 10px;
+    margin-right: 15px;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 </style>

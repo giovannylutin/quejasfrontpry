@@ -25,7 +25,7 @@
 </template>
 <style scoped>
 .informacion_mensaje{
-height: 45px;
+height: 40px;
 }
 .informacion{
     /* outline: 2px solid red; */
@@ -34,9 +34,10 @@ height: 45px;
     align-items: center;
     text-align: justify;
     justify-content: center;
-    margin-left: 20px;
+    margin: 15px;
      box-shadow: 0px 5px 8px lightgray;
       border: 2px solid lightgray;
+     
 }
 .informacion_detalle h4{
     font-weight: bold;

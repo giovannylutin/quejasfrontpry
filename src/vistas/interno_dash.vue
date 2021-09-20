@@ -11,29 +11,29 @@
             <div class="paneldash_detalle-infodiarias">
                 <img src="http://drive.google.com/uc?export=view&id=1G3zSoCYRkq-36Zs15KhvnWV0O7FGl0tz" width="60px" height="60px" alt="">
                  <div>
-                    <h5>Quejas Ingresadas Hoy</h5>
-                    <h3>{{this.resumen.diatotal}}</h3>
+                    <h6>Quejas Ingresadas Hoy</h6>
+                    <h4>{{this.resumen.diatotal}}</h4>
                 </div>
             </div>
             <div class="paneldash_detalle-infodiaantes">
                 <img src="http://drive.google.com/uc?export=view&id=1G3zSoCYRkq-36Zs15KhvnWV0O7FGl0tz" width="60px" height="60px" alt="">
                  <div>
-                    <h5>Quejas Ingresadas Ayer</h5>
-                    <h3>{{this.resumen.diaantes}}</h3>
+                    <h6>Quejas Ingresadas Ayer</h6>
+                    <h4>{{this.resumen.diaantes}}</h4>
                 </div>
             </div>
              <div class="paneldash_detalle-infomes">
                 <img src="http://drive.google.com/uc?export=view&id=1aaqg5YRmkasCezdCooP49qSNEeL95mO8" width="60px" height="60px" alt="">
                  <div>
-                    <h5>Quejas de este mes</h5>
-                    <h3>{{this.resumen.mestotal}}</h3>
+                    <h6>Quejas de este mes</h6>
+                    <h4>{{this.resumen.mestotal}}</h4>
                 </div>
             </div>
              <div class="paneldash_detalle-infomes">
                 <img src="http://drive.google.com/uc?export=view&id=1aaqg5YRmkasCezdCooP49qSNEeL95mO8" width="60px" height="60px" alt="">
                  <div>
-                    <h5>Quejas Durante el año</h5>
-                    <h3>{{this.resumen.anual}}</h3>
+                    <h6>Quejas Durante el año</h6>
+                    <h4>{{this.resumen.anual}}</h4>
                 </div>
             </div>
 
@@ -178,6 +178,7 @@ export default ({
 }
 .paneldash_detalle{
     /* outline: 2px solid green; */
+    margin: 14px;
     width: 30%;
     height: 100%;
     display: flex;
@@ -187,7 +188,8 @@ export default ({
 }
 .paneldash_detalle-infodiarias{
     /* outline:2px solid blueviolet; */
-    height:20%;
+    height:17%;
+    padding: 5px;
     width: 100%;
     background: #12ba38;
     border-radius: 15px;
@@ -196,10 +198,11 @@ export default ({
     align-items: center;
     text-align: center;
     margin-bottom: 15px;
+;
 }
 .paneldash_detalle-infomes{
     /* outline:2px solid blueviolet; */
-    height:20%;
+     height:17%;
     width: 100%;
     background: orange;
     border-radius: 15px;
@@ -211,7 +214,7 @@ export default ({
     margin-bottom: 15px;
 }
 .paneldash_detalle-infodiaantes{
-    height:20%;
+     height:17%;
     width: 100%;
     background: tan;
     border-radius: 15px;

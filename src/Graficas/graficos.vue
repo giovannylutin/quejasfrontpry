@@ -15,7 +15,8 @@ export default {
   },
   data(){
     return {
-      datacollection: [{}]
+      datacollection: [{}],
+      opciones:[ 3, 3, 3, 2, 1, 4, 3,0]
     }
   },
   mounted () {
@@ -31,10 +32,11 @@ export default {
           {
             label: 'Quejas',
             backgroundColor: '#007bff',
-            data: [ 3, 8, 5, 1, 5, 4, 3]
-          },
-        ]
-      }
+            data: this.opciones
+          }
+          
+        ]}
+    
       
     }
   }

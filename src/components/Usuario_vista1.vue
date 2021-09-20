@@ -1,8 +1,8 @@
 <template>
-<div class="texto">
-  <vistados class="opciones"/>
+<div class="texto row">
+  <vistados class="opciones col"/>
  
-  <div v-if="vistaopcion===2" class="dat">
+  <div v-if="vistaopcion===2" class="dat col">
      <h4 class="informacion_detalle-titulo">Recepcion de Quejas Online</h4>
     <vistaprincipal v-bind:titulo="opcion" @tipo_queja="cambio" @tipo_navegar="iraform"/>
     
@@ -12,7 +12,7 @@
        <!-- <label for="form control"></label> -->
       <button type="button" class="btn btn-success " onClick="parent.location='#/Ingresso_Formulario/noanonimo'">{{botonmsg}}</button>
     </div>
-    <div v-else-if="opcion===0">
+    <div v-else-if="opcion===0" class="btntama">
       <button type="button" class="btn btn-success" onClick="parent.location='#/Ingresso_Formulario/anonimo'">{{botonmsg}}</button>
     </div>
     
@@ -90,8 +90,6 @@ components:{
   width: 100%;
   height: 80%;
   border-radius: 15px;
-  
-  
   /* outline:2px solid blue; */
 }
 .btntama button{

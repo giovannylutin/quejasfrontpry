@@ -51,7 +51,7 @@ export default {
    text-align: center;
 }
 .alerta_info{
-  width: 90%;
+  width: 95%;
   font-size: medium;
   /* outline: 2px solid blue; */
 }
@@ -59,14 +59,15 @@ export default {
     font-weight: bold;
 }
 .alerta{
-    
+   
     /* height: 80%; */
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* margin: 15px; */
 }
 p{
     font-size: small;
-    margin: 5px;
+    margin: 0px;
 }
 </style>
