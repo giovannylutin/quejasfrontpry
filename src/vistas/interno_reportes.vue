@@ -11,7 +11,7 @@
                     <!-- <select name="empresas" id=""></select> -->
                     <!-- <input type="text" v-model="nemp" v-on:keypress="busquedaemp" class="form-control form-control-sm" id="direccion" placeholder="Nit Empresa" > -->
                     
-                    <select class="form-control form-control-sm" v-model="nemp" v-on:change="mostrarcampos" >
+                    <select id="emptext" class="form-control form-control-sm" v-model="nemp" v-on:change="mostrarcampos" >
                             <option value="" disabled selected hidden>Seleccione Empresa</option>
                             <option v-for="(emptotal) in empresast" v-bind:key ="emptotal.NIT" :value="emptotal.NIT">{{emptotal.EMPRESA}}</option>
                     </select>
@@ -40,8 +40,8 @@
                 <div class="form-row">
                     <div class="col-sm">
                         <label for="selectexample">Region:</label>
-                        <select class="form-control form-control-sm" v-model="idreg" v-on:change="departamentover" >
-                                <option value="" disabled selected hidden>Seleccione Region</option>
+                        <select  class="form-control form-control-sm" v-model="idreg" v-on:change="departamentover" >
+                                <option value="" disabled hidden>Seleccione Region</option>
                                 <option v-for="(regioncollect) in region" v-bind:key ="regioncollect.ID_REGION" :value="regioncollect.ID_REGION">{{regioncollect.REGION}}</option>
                         </select>
                                 <!-- <input type="text" v-model="form.departamento" class="form-control" id="departamento" placeholder="Departamento de la empresa" > -->
@@ -70,7 +70,7 @@
             </div>
             <div class="dropdown-divider"></div>
             <!-- <button type="button" v-on:click="filtrado" class="btn btn-success btn-sm" >Consultar</button> -->
-            <button type="button"  class="btn btn-danger btn-sm" >Imprimir</button>
+            <button type="button" v-on:click="downloadWithCSS" class="btn btn-danger btn-sm" >Imprimir</button>
            
         </div>
 
@@ -79,7 +79,7 @@
                 <h4>Quejas susitadas</h4>
             </div>
             <div class="Reportes_graficas-informacion">
-                <div>
+                <div >
                     <h6>Nit:</h6>
                     {{this.nemp}}
                 </div>
@@ -90,6 +90,7 @@
                 </div>   
                 <div>
                     <h6>Fecha Desde: </h6>
+                    <!-- {{showText(this.nemp)}} -->
                         {{fechadesdef}}
                 </div>
                 <div>
@@ -97,10 +98,10 @@
                     {{fechahastaf}}
                 </div>
             </div>
-            <div class="Reportes_graficas-detalles">
+            <div class="Reportes_graficas-detalles"  >
                 
                 <div>
-                    <table class="table table-striped table-sm">
+                    <table class="table table-striped table-sm" id="tba">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -134,6 +135,11 @@
 </template>
 <script>
 import axios from "axios";
+import jsPDF from 'jspdf' ;
+// import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable'
+// import autoTable from 'jspdf-autotable'
+// import html2canvas from "html2canvas";
 export default({
     data() {
         return{
@@ -168,6 +174,40 @@ export default({
         }
     },
     methods: {
+ downloadWithCSS() {
+  var tit="Total de quejas Reibidas : "+this.totalquejas
+ 
+  var combo = document.getElementById("emptext");
+var selected = combo.options[combo.selectedIndex].text;
+ var empynit="Empresa : "+selected+" Nit : "+this.nemp
+  const doc = new jsPDF()
+doc.setFontSize(22);
+doc.text("DETALLE DE QUEJAS", 10, 10);
+doc.setFontSize(16);
+doc.text(20,20,tit);	
+doc.setFontSize(16);
+doc.text(20, 30, empynit);
+doc.setFontSize(16);
+doc.text(20, 40, 'This belongs to: ');
+
+  
+
+// margins = {
+//             top: 80,
+//             bottom: 60,
+//             left: 40,
+//             width: 522
+//         };
+
+autoTable(doc, { html: '#tba',margin: {top: 50},
+didDrawPage: function (data) {
+                    // Reseting top margin. The change will be reflected only after print the first page.
+                    data.settings.margin.top = 10; }
+});
+doc.save('table.pdf')
+// console.log(this.regionesfilter)
+
+ },
         regionver(){
                  axios.get ("http://localhost/Quejas_api/reportes.php") .then (res => {
                  this.region = res.data;

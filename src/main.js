@@ -7,10 +7,12 @@ import "./assets/app.css"
 import vueRouter from 'vue-router'
 import Routes from './Mis_rutas'
 Vue.component('grafica-component', require('./Graficas/graficos.vue').default);
+
 import FlashMessage from '@smartweb/vue-flash-message';
 Vue.use(FlashMessage);
 import global_ from './vistas/varausar.vue' // archivo de referencia
 Vue.prototype.GLOBAL = global_ // Montar en la instancia de Vue
+
 
 Vue.use(vueRouter)
 Vue.config.productionTip = false
