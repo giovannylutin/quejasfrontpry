@@ -70,7 +70,6 @@
             </div>
             <div class="dropdown-divider"></div>
             <!-- <button type="button" v-on:click="filtrado" class="btn btn-success btn-sm" >Consultar</button> -->
-            <button type="button" v-on:click="downloadWithCSS" class="btn btn-danger btn-sm" >Imprimir</button>
            
         </div>
 
@@ -129,6 +128,7 @@
             </div>
             <div class="Reportes_datos-titulo">
                 <a type="button"  class="btn btn-success btn-sm" v-bind:href="'#/Principal'" >Regresar</a>
+                 <button type="button" v-on:click="downloadWithCSS" class="btn btn-danger btn-sm" >Imprimir</button>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@ export default({
     },
     methods: {
  downloadWithCSS() {
-  var tit="Total de quejas Reibidas : "+this.totalquejas
+  var tit="Total de quejas Recibidas : "+this.totalquejas
  
   var combo = document.getElementById("emptext");
 var selected = combo.options[combo.selectedIndex].text;
@@ -190,22 +190,12 @@ doc.text(20, 30, empynit);
 doc.setFontSize(16);
 doc.text(20, 40, 'This belongs to: ');
 
-  
-
-// margins = {
-//             top: 80,
-//             bottom: 60,
-//             left: 40,
-//             width: 522
-//         };
-
 autoTable(doc, { html: '#tba',margin: {top: 50},
 didDrawPage: function (data) {
-                    // Reseting top margin. The change will be reflected only after print the first page.
-                    data.settings.margin.top = 10; }
+data.settings.margin.top = 10; }
 });
 doc.save('table.pdf')
-// console.log(this.regionesfilter)
+
 
  },
         regionver(){
@@ -300,18 +290,19 @@ doc.save('table.pdf')
 }
 .Reportes_datos{
     /* outline: 2px solid blue; */
-    width: 25%;
+    width: 21.1%;
     height: 100%;
     background-color: lightgray;
     border-radius: 10px;
 }
-.Reportes_datos-titulo{
-    display: flex;
-}
+/* .Reportes_datos-titulo{ */
+    /* display: flex; */
+    /* text-align: center; */
+/* } */
 .Reportes_datos-titulo h5,h4{
     text-align: center;
-    padding-top: 3px;
-    margin-bottom: 0;
+     padding-top: 3px;
+    margin-bottom: 0; 
 }
 .Reportes_graficas{
     /* outline: 2px solid black; */

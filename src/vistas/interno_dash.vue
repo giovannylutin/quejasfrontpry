@@ -1,7 +1,9 @@
 <template>
     <div class="paneldash">
-   
     <div class="paneldash_nav">
+      <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle">Resumen Empresa</button>
+      <button type="button" class="btn btn-success btn-sm" v-on:click="modestadtus">Modificar Estatus</button>
+         
           <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle">Detalle</button>
           <button type="button" class="btn btn-warning btn-sm" v-on:click="salir">Salir</button>
     </div>
@@ -98,11 +100,8 @@
 </template>
 <script>
 import axios from "axios";
- 
-
 export default ({
     components: {
-     
     },
     data() {
         return{
@@ -115,10 +114,10 @@ export default ({
     mounted(){
 
         if(localStorage.getItem('tk_sesion')){
-            // console.log("hola")
+        
             this.cargaresumen();
             this.resumenporlocalidad();
-            // this.fillData();
+          
         }else{
             this.$router.push('/Ingreso')
         }
@@ -132,7 +131,7 @@ export default ({
         cargaresumen(){
             axios.get (this.GLOBAL.serverSrc+"/Quejas_api/ingreso.php") .then (res => { 
                 this.resumen = res.data; 
-                // console.log(this.resumen)
+                
             })
         },
         resumenporlocalidad(){
@@ -140,6 +139,9 @@ export default ({
                 this.informacionresumen = res.data; 
                  console.log(this.informacionresumen.regionresumen)
             })
+        },
+        modestadtus(){
+           this.$router.push('/Estatus')
         }
     
     

@@ -6,6 +6,7 @@ import reportes from './vistas/interno_reportes.vue'
 import rutanoencontrada from './components/Usuario_vistaError.vue'
 import reportesdash from './vistas/interno_dash.vue'
 import ingresoreportes from './vistas/interno_login.vue'
+import estatusreporte from './vistas/modestatus_report.vue'
 
 // import ObtenerCodigo from './components/Obtener_codigo.vue'
 // import Panel_principal from './components/Ingreso_principal.vue'
@@ -18,6 +19,8 @@ export default [
     {path: '/Principal', component: reportesdash},
     {path: '/Ingreso', component: ingresoreportes},
     {path: '/opps', component: sininformacion},
+    {path: '/Estatus', component: estatusreporte},
     {path: '*', component: rutanoencontrada}
+
     // {path: '/panel',component:Panel_principal}
 ]
