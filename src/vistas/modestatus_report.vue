@@ -44,10 +44,10 @@
                         <div class="col">
                         <select type="select" v-model="campos.estadoquejaop" class="form-control" placeholder="First name">
                             <option value="0">seleccionar un estado</option>
-                            <option value="Recibido">Recibido</option>
-                            <option value="En proceso">En proceso</option>
-                            <option value="Finalizado">Finalizado</option>
-                            <option value="Rechazado">Rechazado</option>
+                            <option value="recibido">Recibido</option>
+                            <option value="enproceso">En proceso</option>
+                            <option value="finalizado">Finalizado</option>
+                            <option value="rechazado">Rechazado</option>
                         </select>
                         </div>
                         <div class="col">

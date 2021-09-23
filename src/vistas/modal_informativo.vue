@@ -3,13 +3,14 @@
   <div class="modalh_cuerpo">
     <div class="modalh_cuerpo-texto">
     <img src="http://drive.google.com/uc?export=view&id=1bl7fgvo8xnKG6BSbpdKcj53quURwayF8" alt="">
-      <p> Al momento de enviar tua quja ya no podras modificar la informacion que estas
-         colocando asi que asegurate
-        que la informacion que estas colocando sea la correcta 
+      <p> RECUERDA que después de enviar tu queja, NO podrás modificar la información ingresada
+         en este formulario, por eso te recordamos que debes revisar cuidadosamente la 
+         información que coloques antes de emitir tu queja, cualquier duda o comentario 
+         puedes avocarte a una agencia Diaco en tu región 
       </p>
     </div>
     <div class="modalh_cuerpo-boton">
-      <button type="submit"  class="btn btn-success" v-on:click="cerrar">cerrar</button>
+      <button type="bottom"  class="btn btn-warning btn-sm" v-on:click="cerrar">cerrar</button>
     </div>
   </div>
 <!-- <h1>hola</h1> -->
@@ -43,21 +44,47 @@ export default({
   justify-content: center;
   align-items: center;
 }.modalh_cuerpo{
-  background-color: white;
+  background-color: whitesmoke;
   width: 600px;
   height: 300px;
   border-radius: 15px;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border:2px solid lightgray;
 }
 .modalh_cuerpo-texto{
-  display: flex;
+  
+    background-color: white;
+    display: flex;
   flex-direction:row;
+  height: 90%;
+  width: 95%;
+  border:2px solid lightgray;
+    border-radius: 15px;
+   box-shadow: 0px 5px 8px gray;
+
 }
 .modalh_cuerpo-texto p{
-  text-align: justify;
-  margin-top: 96px;
+  padding: 20px;
 }.modalh_cuerpo-texto img{
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+}
+.modalh_cuerpo-boton{
+  /* outline: 2px solid red; */
+  width: 20%;
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.modalh_cuerpo-boton button{
+  font-weight: bold;
+  width: 100%;
+  font-size: medium;
 }
 </style>
