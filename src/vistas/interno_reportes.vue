@@ -188,7 +188,7 @@ doc.text(20,20,tit);
 doc.setFontSize(16);
 doc.text(20, 30, empynit);
 doc.setFontSize(16);
-doc.text(20, 40, 'This belongs to: ');
+// doc.text(20, 40, 'This belongs to: ');
 
 autoTable(doc, { html: '#tba',margin: {top: 50},
 didDrawPage: function (data) {
@@ -199,7 +199,7 @@ doc.save('table.pdf')
 
  },
         regionver(){
-                 axios.get ("http://localhost/Quejas_api/reportes.php") .then (res => {
+                 axios.get (this.GLOBAL.serverSrc+"/Quejas_api/reportes.php") .then (res => {
                  this.region = res.data;
             //    console.log('success');
                 
@@ -207,7 +207,7 @@ doc.save('table.pdf')
             })
         },
         departamentover(){
-               axios.get ("http://localhost/Quejas_api/reportes.php?id="+this.idreg+"&verop=1"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+               axios.get (this.GLOBAL.serverSrc+"/Quejas_api/reportes.php?id="+this.idreg+"&verop=1"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  this.dep = res.data; // Obtener datos
                 //  console.log(this.dep);
                 // console.log(this.datosrep)
@@ -219,21 +219,21 @@ doc.save('table.pdf')
       })
         },
         municipiover(){
-                 axios.get ("http://localhost/Quejas_api/reportes.php?id="+this.iddep+"&verop=2"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+                 axios.get (this.GLOBAL.serverSrc+"/Quejas_api/reportes.php?id="+this.iddep+"&verop=2"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  this.mun = res.data; // Obtener datos
                 //  console.log(this.mun);
                 this.filtrado()
                  })
         },
         busquedaemp(){
-            axios.get ("http://localhost/Quejas_api/reportes.php?id="+0+"&verop=3"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+            axios.get (this.GLOBAL.serverSrc+"/Quejas_api/reportes.php?id="+0+"&verop=3"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  this.empresast = res.data; // Obtener datos
                  
                 //  console.log(this.empresast);
                  })
         },
         mostrarcampos(){
-             axios.get ("http://localhost/Quejas_api/reportes.php?id="+this.nemp+"&verop=4"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {
+             axios.get (this.GLOBAL.serverSrc+"/Quejas_api/reportes.php?id="+this.nemp+"&verop=4"+"&fechaini="+this.fechadesdef+"&fechafin="+this.fechahastaf) .then (res => {
                  this.datosrep = res.data;
                  this.regionesfilter =res.data; // Obtener datos
                   console.log(this.datosrep);

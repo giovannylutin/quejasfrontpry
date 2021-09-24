@@ -14,17 +14,17 @@
                     </div>
                     <div class="col">
                         <label for="exampleInputEmail1">No. CUI</label>
-                        <input type="text" v-model="form.cui" class="form-control" id="cui" placeholder="CUI" >
+                        <input type="text" v-model="form.cui" class="form-control" id="cui" placeholder="CUI" maxlength="13" >
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
                         <label for="exampleInputEmail1">Telefono</label>
-                        <input type="text" v-model="form.telefono" class="form-control" id="telefono" placeholder="Telefono">
+                        <input type="text" v-model="form.telefono" class="form-control" id="telefono" placeholder="Telefono" maxlength="9">
                     </div>
                     <div class="col">
                             <label for="exampleInputEmail1">Celular</label>
-                            <input type="text" v-model="form.celular" class="form-control" id="celular" placeholder="Celular" >
+                            <input type="text" v-model="form.celular" class="form-control" id="celular" placeholder="Celular" maxlength="9">
                     </div>
                     <div class="col">
                             <label for="exampleInputEmail1">Correo</label>
@@ -223,7 +223,7 @@ components:{
            }else if (this.form.quejaemp==""){
                this.mensajes("El campo Detalle de la queja es obligatorio")
            }else{
-            axios.post("http://localhost/Quejas_api/cliente.php",this.form)
+            axios.post(this.GLOBAL.serverSrc+"/Quejas_api/cliente.php",this.form)
             .then(data => {
                   if(data.status==200){
                       if(data.statusText=='fail'){
