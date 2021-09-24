@@ -247,7 +247,7 @@ components:{
       },
       cambiarmun(){
           this.form.departamento;
-           axios.get ("http://localhost/Quejas_api/elementos.php?id="+this.form.departamento) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+           axios.get (this.GLOBAL.serverSrc+"/Quejas_api/elementos.php?id="+this.form.departamento) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  this.municipio = res.data; // Obtener datos
                  console.log(this.municipio);
            
@@ -256,7 +256,7 @@ components:{
 
       ,llenarmunicipio(){
       
-     axios.get ("http://localhost/Quejas_api/elementos.php") .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+     axios.get (this.GLOBAL.serverSrc+"/Quejas_api/elementos.php") .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                  this.departamento = res.data; // Obtener datos
             //    console.log('success');
             //   console.log(this.departamento);
