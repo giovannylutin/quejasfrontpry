@@ -1,7 +1,7 @@
 <template>
     <div class="paneldash">
     <div class="paneldash_nav">
-      <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle">Resumen Empresa</button>
+      <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle1">Resumen Empresa</button>
       <button type="button" class="btn btn-success btn-sm" v-on:click="modestadtus">Modificar Estatus</button>
          
           <button type="button" class="btn btn-success btn-sm" v-on:click="paneldetalle">Detalle</button>
@@ -136,6 +136,7 @@ export default ({
     },
     methods:{
         paneldetalle(){this.$router.push('/Reportes')},
+        paneldetalle1(){this.$router.push('/Reporte_empresa')},
         salir(){
             localStorage.removeItem('tk_sesion')
             this.$router.push('/Ingreso')

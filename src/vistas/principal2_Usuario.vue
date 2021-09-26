@@ -17,9 +17,11 @@
             <button type="button" class="btn btn-success" v-on:click="Irconsulta">Consultar</button>
         </div>
         <div class="informacion_mensaje">
-            <div v-if="mostrarerror==1" v-on:click="ocultar" class="alert alert-warning" role="alert">
+               
+       <FlashMessage :position="'left bottom'"></FlashMessage>
+            <!-- <div v-if="mostrarerror==1" v-on:click="ocultar" class="alert alert-warning" role="alert">
                 {{errorconsulta}}
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -87,8 +89,8 @@ export default({
     data() {
         return{
            tkconsultar:"",
-           errorconsulta:"",
-           mostrarerror:0
+           errorconsulta:""
+        //    mostrarerror:0
         }
     },
     methods:{
@@ -97,12 +99,15 @@ export default({
             
             if(this.tkconsultar=="" ){
                 this.errorconsulta="Porfavor Ingrese su ID Consulta"
-                this.mostrarerror=1
+                
+                this.flashMessage.show({status:'warning',title:':(',message:this.errorconsulta,time: 5000});
+
  
             }else{
                 if(this.tkconsultar.length != 10){
                     this.errorconsulta="Porfavor Ingrese ID Consulta Valido"
-                    this.mostrarerror=1
+                    this.flashMessage.show({status:'warning',title:':(',message:this.errorconsulta,time: 5000});
+
 
                 }else {
                     // alert(this.tkconsultar.length)

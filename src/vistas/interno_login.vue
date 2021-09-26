@@ -61,8 +61,8 @@ export default ({
                     if(data.request.statusText!="Usuario no encontrado"){
                         
                              // console.log()
-                            //  localStorage.setItem('tk_sesion',data.data[0].TOK)
-                            localStorage.setItem('tk_sesion',"45asd4a5sd5a")
+                             localStorage.setItem('tk_sesion',data.data[0].TOK)
+                            // localStorage.setItem('tk_sesion',"45asd4a5sd5a")
                             //  console.log(data.data[0].TOK)
                               this.$router.push('/Principal')
                         // console.log(this.campos)

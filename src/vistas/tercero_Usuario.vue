@@ -121,7 +121,7 @@ export default ({
         estadosmodificar:function(){
             return{
                 'badge badge-pill badge-success':this.miqueja[0].ESTADO=='finalizado' || this.miqueja[0].ESTADO=='recibido',
-                'badge badge-pill badge-secondary':this.miqueja[0].ESTADO=='rechazado',
+                'badge badge-pill badge-danger':this.miqueja[0].ESTADO=='rechazado',
                 'badge badge-pill badge-warning':this.miqueja[0].ESTADO=='enproceso'
             }
         }
@@ -130,8 +130,7 @@ export default ({
          consultardenuncia(){
           console.log(this.$route.params.tk)
            axios.get (this.mirutahost+"/Quejas_api/cliente.php?id="+this.$route.params.tk) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
-                 
-                
+                      
            if(res.data!=0){
                 this.miqueja = res.data; 
                 // console.log(this.miqueja)

@@ -5,5 +5,20 @@
             <h1 class="error-page__title nolinks">Opps algo a pasado :(</h1>
             </header>
             <p class="error-page__message">Al parecer No se encontro informacion para consultar.</p>
-            </div>
+            <p class="error-page__message">Verifica Que el IDConsulta Ingresado sea el Correcto.</p>
+            <button type="button" class="btn btn-success btn-sm" v-on:click="regresar">Regresar</button>
+ 
+    </div>
+
 </template>
+<script>
+
+
+export default ({
+    methods:{
+        regresar(){
+            this.$router.push('/')
+        },
+    }
+})
+</script>

@@ -83,7 +83,13 @@
 import axios from "axios";
 export default({
     mounted(){
-       
+        if(localStorage.getItem('tk_sesion')){
+            console.log("si")
+        }
+        else{
+            this.$router.push('/Ingreso')
+        }
+        
     },
     data() {
         return{
@@ -99,38 +105,46 @@ export default({
     },
     methods:{
         buscarqueja(){
-        axios.get (this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php?id="+this.campos.Idlistar) .then (res => {
+            if(this.campos.Idlistar!=""){
+                  axios.get (this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php?id="+this.campos.Idlistar) .then (res => {
                 if(res.data!=0){
                 this.registro = res.data; 
                 console.log(this.registro);
                 // console.log(this.mirutahost);
                 this.flashMessage.show({status:'success',title:'Listo',message:'Tus datos fueron cargados',time: 5000});
 
-           }else{
-              this.flashMessage.show({status:'warning',title:'Listo',message:'OOOOPS no hay registros con ese id',time: 5000});
-           }
-                // this.flashMessage.show({status:'success',title:'Listo',message:'Estos son los Detalles de tu queja ingresada',time: 5000});
+                        }else{
+                            this.flashMessage.show({status:'warning',title:'Listo',message:'OOOOPS no hay registros con ese id',time: 5000});
+                        }
+                                // this.flashMessage.show({status:'success',title:'Listo',message:'Estos son los Detalles de tu queja ingresada',time: 5000});
 
-          
-      })
+                        
+                    })
+            }else{
+                this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'Debes Ingresar un IdConsulta ',time: 5000});
+            }
             // alert(this.registro)
         },
         actualizaestado(){
-             axios.put(this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php",this.campos)
-            .then(data => {
-                if(data.status==200){ 
-                    if(data.request.statusText!="OK"){
-                         this.flashMessage.show({status:'success',title:'Listo',message:'El estado fue actualizado con exito',time: 5000});
-                        axios.get (this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php?id="+this.campos.Idlistar) .then (res => {
-                           this.registro = res.data;  
-                        })
+           if(this.campos.Idlistar!=""){
+                 axios.put(this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php",this.campos)
+                    .then(data => {
+                        if(data.status==200){ 
+                            if(data.request.statusText!="OK"){
+                                this.flashMessage.show({status:'success',title:'Listo',message:'El estado fue actualizado con exito',time: 5000});
+                                axios.get (this.GLOBAL.serverSrc+"/Quejas_api/actualizarestado.php?id="+this.campos.Idlistar) .then (res => {
+                                this.registro = res.data;  
+                                })
 
-                    }else{
-                        console.log(data)
-                        this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'El estado no se actualizo',time: 5000});
+                            }else{
+                                console.log(data)
+                                this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'El estado no se actualizo',time: 5000});
+                            }
                     }
-             }
-           })
+                })
+           }else{
+               this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'Debes Ingresar un IdConsulta para Realizar Esta Accion',time: 5000});
+           }
             //  console.log(this.campos)
         }
 
