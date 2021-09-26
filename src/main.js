@@ -7,6 +7,7 @@ import "./assets/app.css"
 import vueRouter from 'vue-router'
 import Routes from './Mis_rutas'
 Vue.component('grafica-component', require('./Graficas/graficos.vue').default);
+Vue.component('grafica-lineal', require('./Graficas/graflinealsem.vue').default);
 
 import FlashMessage from '@smartweb/vue-flash-message';
 Vue.use(FlashMessage);

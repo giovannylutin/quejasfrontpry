@@ -1,13 +1,17 @@
 <template>
-  <div class="graf">
-    <h4>Quejas durante la Semana</h4>
-    <line-chart v-bind:chart-data="datacollection" :height="100"></line-chart>
+
+    <div class="graf">
+    <h5>Resumen Por Tipo</h5>
+    <LineChart v-bind:chartData="datacollection" :height="200"></LineChart>
+
   </div>
+ 
 </template>
 
 <script>
 
 import LineChart from './LineChart.js'
+import axios from "axios";
 
 export default {
   components: {
@@ -15,40 +19,44 @@ export default {
   },
   data(){
     return {
-      datacollection: [{}],
-      opciones:[ 3, 3, 3, 2, 1, 4, 3,0]
+      datacollection: [],
+     
     }
   },
   mounted () {
-    this.fillData()
+    this.cargarinformacion()
+    
   },
   methods: {
-
-    fillData ()
-    {
+    cargarinformacion(){
+          axios.get (this.GLOBAL.serverSrc+"/Quejas_api/dash.php?id="+0) .then (res => { 
+          //  this.opciones = res.data; 
+          //   this.qa =this.opciones[0].TOTALQ
+          //   this.qb =this.opciones[1].TOTALQ
+          console.log(res.data[0].TOTALQ)
       this.datacollection = {
-        labels: ['Lunes','Martes','Miercoles','Jueves','Viernes', 'Sabado' , 'Domingo'],
+        labels: ['Anonimas','No Anonimas'],
         datasets: [
           {
-            label: 'Quejas',
+            label: ['Comparacion'],
             backgroundColor: '#007bff',
-            data: this.opciones
+            data: [res.data[0].TOTALQ,res.data[1].TOTALQ,0]
           }
           
         ]}
-    
-      
+            })//hh
     }
   }
 }
 </script>
 
 <style>
+
 .graf{
     margin: 0;
     margin-right: 15px;
 }
-.graf h4{
+.graf h5{
     font-weight: bold;
     text-align: center;
   /* max-width: 800px; */

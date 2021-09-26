@@ -41,7 +41,15 @@
 
         </div>
         <div class="paneldash_grafica">
-         <grafica-component />
+          <div class="graf_visual">
+            <div class="paneldash_graf1">
+            <grafica-component />
+          </div>
+          <div class="paneldash_graf2">
+            <grafica-lineal />
+          </div>
+          </div>
+         
 
          <div class="paneldash_resumentot">
         <div class="totaldetalle">
@@ -53,14 +61,14 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr v-for="(resreg,index) in informacionresumen.regionresumen[0]" v-bind:key ="index++">
+                  <tr v-for="(resreg,index) in informacionresumen" v-bind:key ="index++">
                     <td>{{resreg.REGION}}</td>
                     <td>{{resreg.total}}</td>
                   </tr>
                 </tbody>
             </table>
           </div>
-            <div class="totaldetalle">
+             <div class="totaldetalle">
               <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -69,30 +77,32 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr v-for="(resreg,index) in informacionresumen.departamentoresumen[0]" v-bind:key ="index++">
+                  <tr v-for="(resreg,index) in informacionresumen2" v-bind:key ="index++">
                     <td>{{resreg.DEPARTAMENTO}}</td>
                     <td>{{resreg.total}}</td>
                   </tr>
                </tbody>
               </table>
-          </div>
-        <div class="totaldetalle">
+          </div> 
+          <div class="totaldetalle">
               <table class="table table-striped table-sm">
-  <thead>
-    <tr>
-      <th scope="col">Region</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr v-for="(resreg,index) in informacionresumen.muncipioresumen[0]" v-bind:key ="index++">
-<td>{{resreg.MUNICIPIO}}</td>
-<td>{{resreg.total}}</td>
-</tr>
-  </tbody>
-</table>
+                <thead>
+                  <tr>
+                    <th scope="col">Municipio</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+              <tr v-for="(resreg,index) in informacionresumen1" v-bind:key ="index++">
+              <td>{{resreg.MUNICIPIO}}</td>
+              <td>{{resreg.total}}</td>
+              </tr>
+                </tbody>
+              </table>
           </div>
-        </div>
+          </div>
+
+
         </div>
         
     </div>
@@ -107,7 +117,9 @@ export default ({
         return{
             estado:"",
             resumen:[],
-            informacionresumen:[]            
+            informacionresumen:[],
+            informacionresumen1:[],
+            informacionresumen2:[]            
         }
     },
 
@@ -136,8 +148,11 @@ export default ({
         },
         resumenporlocalidad(){
            axios.get (this.GLOBAL.serverSrc+"/Quejas_api/dash.php") .then (res => { 
-                this.informacionresumen = res.data; 
-                 console.log(this.informacionresumen.regionresumen)
+                this.informacionresumen = res.data.regionresumen[0]; 
+                this.informacionresumen1 = res.data.muncipioresumen[0]; 
+                this.informacionresumen2 = res.data.departamentoresumen[0]; 
+                //  console.log(res.data)
+                //  console.log(this.informacionresumen.regionresumen[0])
             })
         },
         modestadtus(){
@@ -237,9 +252,25 @@ export default ({
     margin-left: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
-     box-shadow: 0px 5px 8px lightgray;
+    box-shadow: 0px 5px 8px lightgray;
+}
+.graf_visual{
+  display: flex;
+}
+.paneldash_graf1{
+  /* outline: 2px solid blue; */
+    margin-top: 5px;
+    width: 50%;
+    height: 50%;
+}
+.paneldash_graf2{
+  /* outline: 2px solid violet; */
+    margin-top: 5px;
+    width: 50%;
+    height: 50%;
 }
 .paneldash_resumentot{
+  /* outline: 2px solid green; */
     display: flex;
     flex-direction: row;
     justify-content: center;
