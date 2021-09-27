@@ -26,7 +26,7 @@
       fillData () {
                   axios.get (this.GLOBAL.serverSrc+"/Quejas_api/dash.php?id="+1) .then (res => { 
      
-              console.log(res.data[0])
+              console.log(res.data[0].total)
                       this.datacollection = {
           labels: ['Hoy','1','2','3','4','5','6'],
           datasets: [
