@@ -22,6 +22,7 @@
     <div class="login_botones">
         <FlashMessage :position="'right top'"></FlashMessage>
         <button type="button" class="btn btn-success" v-on:click="autenticar" id="inputPassword">Ingresar</button>
+        <button type="button" class="btn btn-warning" v-on:click="retornar" id="inputPassword">Retornar</button>
     </div>
 </div>
 </template>
@@ -60,46 +61,22 @@ export default ({
                 if(data.status==200){ 
                     if(data.request.statusText!="Usuario no encontrado"){
                         
-                             // console.log()
-                            //  localStorage.setItem('tk_sesion',data.data[0].TOK)
-                            localStorage.setItem('tk_sesion',"45asd4a5sd5a")
-                            //  console.log(data.request)
-                           this.$router.push('/Principal')
+                                                
+                             localStorage.setItem('tk_sesion',data.data[0].TOK)
+                            // localStorage.setItem('tk_sesion',"45asd4a5sd5a")
+                             
+                          this.$router.push('/Principal')
                         // console.log(this.campos)
                     }else{
                         console.log(data.request)
-                        this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'Alparecer tu USUARIO Y CONTRASEÑA SON INCORRECTOS ',time: 5000});
+                        this.flashMessage.show({status:'warning',title:'!!OOPSS',message:'AL PARECER TU USUARIO Y CONTRASEÑA SON INCORRECTOS',time: 5000});
                     }
              }
            })
         }
-        // if(this.campos.usuariop!="" || this.campos.passp!=""){
-        //     axios.post(this.GLOBAL.serverSrc+"/Quejas_api/ingreso.php",this.campos)
-        //     .then(data => {
-        //           if(data.status==200){ 
-        //               if(data.request.statusText!="Usuario no encontrado"){
-                        
-        //                     // console.log()
-        //                     localStorage.setItem('tk_sesion',data.data[0].TOK)
-        //                     // localStorage.setItem()
-        //                     this.$router.push('/Principal')
-        //                 // console.log(this.campos)
-        //               }else{
-        //                    this.flashMessage.show({status:'error',title:'!!OOPSS',message:'Debes iniciar sesion',time: 5000});
-        //               }        
-        //             // var valortk = data.statusText;
-        //             //   alert("se inserto correctamente"+valortk);
-        //             // this.$router.push('/'+valortk +'/Consulta')
-        //           }else{
-        //                alert("Oops ingresa campos")
-        //           }
-        //    })
-        //       }else{
-        //           this.flashMessage.show({status:'error',title:'!!OOPSS',message:'Debes ingresar tu USUARIO Y PASSWORD',time: 5000});
-        //       }
-
           },
-          ingresar(){
+          retornar(){
+               this.$router.push('/')
           }
       }
 })
@@ -139,5 +116,9 @@ export default ({
     justify-content: center;
     align-items: center;
     width: 85%;
+}
+.login_botones button{
+    margin-left: 10px;
+
 }
 </style>
