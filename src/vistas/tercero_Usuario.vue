@@ -128,18 +128,21 @@ export default ({
     },
     methods:{
          consultardenuncia(){
-          console.log(this.$route.params.tk)
-           axios.get (this.mirutahost+"/Quejas_api/cliente.php?id="+this.$route.params.tk) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
+        //   console.log(this.$route.params.tk)
+          var cadena = this.$route.params.tk;
+          var sincadena= cadena.replace(/['"]+/g, '');
+
+           axios.get (this.mirutahost+"/Quejas_api/cliente.php?id="+sincadena) .then (res => {// Aquí está la escritura de ES6. La dirección de la solicitud de obtención es el archivo php que el propio editor almacena en el sitio web. Introduce su escritura, también puedes definir la tuya
                       
-           if(res.data!=0){
+        //    if(res.data!=0){
                 this.miqueja = res.data; 
                 // console.log(this.miqueja)
                 // console.log(this.mirutahost);
                 this.flashMessage.show({status:'success',title:'Listo',message:'Estos son los Detalles de tu queja ingresada',time: 5000});
 
-           }else{
-               this.$router.push('/opps')
-           }
+        //    }else{
+        //        this.$router.push('/opps')
+        //    }
       })
       },
       imprimirconst(){

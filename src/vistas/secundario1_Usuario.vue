@@ -230,9 +230,9 @@ components:{
                           console.log("no se inserto")
                           console.log(data.request)
                       }else{
-                    var valortk = data.statusText;
+                    var valortk = data.request.response;
                     //   alert("se inserto correctamente"+valortk);
-                    console.log(data.request)
+                    console.log(data.request.response)
                     localStorage.removeItem('tk_sesion')
                     this.$router.push('/'+valortk +'/Consulta')
                       }
